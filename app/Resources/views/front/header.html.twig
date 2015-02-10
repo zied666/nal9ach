@@ -1,0 +1,170 @@
+<header id="header">
+    <div class="darker-row">
+        <div class="container">
+            <div class="row">
+                <div class="span4">
+                    <div class="higher-line">
+                        {% if app.user  and  is_granted("ROLE_USER") %}
+                            Bienvenue, 
+                            <strong>{{app.user.nom }} {{app.user.prenom }}</strong>, 
+                            <a href="{{ path('fos_user_security_logout') }}" role="button">Déconnexion</a>
+                        {% else %} 
+                            Bienvenue, 
+                            <a href="{{ path('fos_user_security_login') }}" role="button">Connexion</a> ou
+                            <a href="{{ path('fos_user_registration_register') }}" role="button" data-toggle="modal"> Inscription  </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="span8">
+                    {% if app.user  and  is_granted("ROLE_USER") %}
+                        <div class="topmost-line">
+                            <div class="higher-line">
+                                <a href="{{ path('ajoutannonce') }}" class="gray-link"> <li class="icon-plus" ></li> Ajouter une annonce</a>
+                                &nbsp; | &nbsp;
+                                <a href="{{ path('listecommentaires') }}" class="gray-link">Commentaires non-lus ({{ render(controller('frontAnnonceBundle:Front:countcommentaire')) }})</a>
+                                &nbsp; | &nbsp;
+                                <a href="{{ path("annonce_liste") }}" class="gray-link">Mes annonces ({{ render(controller('frontAnnonceBundle:Front:countannonce')) }})</a>
+                                {% if app.user  and  is_granted("ROLE_ADMIN") %}
+                                    &nbsp; | &nbsp;
+                                    <a href="{{ path('admin_general_homepage') }}" target="_blank" class="gray-link">Administration</a>
+                                {% endif %}
+                            </div>
+                            {{ render(controller('frontAccueilBundle:Front:sousmenu')) }}
+
+                        </div>
+                    {% else %}
+                        <div class="SocialButton">
+                            <a class="btn btn-facebook" href="{{ path('facebook_log') }}" >
+                                <span class="icon-facebook " style="color:white"></span> | Se connecter via Facebook
+                            </a>
+                            <a class="btn btn-google-plus g-signin" href="{{ path('google_log') }}">
+                                <span class=" icon-google-plus " style="color:white"></span> | Se connecter via Google
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="span5">
+                <a class="brand" href="{{ path('accueil') }}">
+                    {{ render(controller('adminPageBundle:Front:logo')) }}
+                </a>
+            </div>
+
+            <div class="span5">
+                <a href="{{ path('ajoutannonce') }}" >
+                    {{ render(controller('frontAccueilBundle:Front:photoheader')) }}
+                    {#<img src="{{ asset('img/ann.gif') }}" >#}
+                </a>
+            </div>
+
+            <div class="span2">
+                <div class="top-right">
+                    <div class="icons">
+                        {{ render(controller('frontAccueilBundle:Front:social')) }}
+                    </div>
+                </div>
+            </div> <!-- /social icons -->
+        </div>
+    </div>
+</header>
+<style>
+    .SocialButton
+    {
+        float: right;
+    }
+    .gray-link {
+        color: #727272;
+    }
+    .darker-row {
+        background-color: #F3F3F3;
+        padding: 5px 0px;
+        border-bottom: 1px solid #E0E0E0;
+    }
+    .higher-line {
+        line-height: 27px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .topmost-line .selected {
+        border: 1px solid #E0E0E0;
+        border-radius: 3px;
+        display: block;
+        padding: 3px 8px;
+        color: #727272;
+        text-decoration: none !important;
+    }
+    .lang-currency {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .topmost-line {
+        text-align: right;
+    }
+    .topmost-line .dropdown {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 5px;
+        background: none repeat scroll 0% 0% #FFF;
+    }
+    .topmost-line .selected {
+        color: #727272;
+    }
+    .dropdown .caret {
+        margin-top: 8px;
+        margin-left: 2px;
+    }
+    .topmost-line .dropdown-menu {
+        z-index: 1105;
+        border-radius: 3px;
+        margin-top: 1px;
+        text-align: left;
+    }
+    a:hover, a:focus {
+        color: #005580;
+        text-decoration: underline;
+    }
+    a:focus {
+        outline: thin dotted #333;
+        outline-offset: -2px;
+    }
+    @media (max-width: 767px) {
+        .SocialButton{float:none;}
+        .row, .thumbnails { margin-left: 0; }
+        [class*="span"], .uneditable-input[class*="span"], .row-fluid [class*="span"] {
+            float: none; 
+            display: block;
+            width: 100%;
+            margin-left: 0px;
+            box-sizing: border-box;
+        }
+        header .topmost-line {
+            text-align: center;
+        }
+    }
+    .btn-facebook {
+        color: #FFF;
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+        background-image: linear-gradient(to bottom, #3B5998, #133783);
+    }
+    .btn-facebook:hover {
+        color: #FFF;
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+        background-image: linear-gradient(to bottom, #3B5998, #133783);
+        opacity: 0.7;
+    }
+    .btn-google-plus{
+        color: #FFF;
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+        background-image: linear-gradient(to bottom, #DD4B39, #C53727);
+    }
+    .btn-google-plus:hover {
+        color: #FFF;
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+        background-image: linear-gradient(to bottom, #DD4B39, #C53727);
+        opacity: 0.7;
+    }
+</style>

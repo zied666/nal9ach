@@ -1,0 +1,43 @@
+{% extends ":front:base.html.twig" %}
+{% block title %}Mot de passe{% endblock %}
+{% block body %}
+    <div class="darker-stripe">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{{ path('accueil') }}">Accueil</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="javascript:void(0)">Modification du mot de passe</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="push-up top-equal blocks-spacer-last">
+            <div class="row">
+                <div class="span12">
+                    <div class="title-area">
+                        <h1 class="inline">Modification du mot de passe</h1>
+                    </div>
+                </div>
+                <section class="span12 single single-page">
+                    <section class="contact-form-container">
+                        {% trans_default_domain 'FOSUserBundle' %}
+
+						<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+						    {{ form_widget(form) }}
+						    <div>
+						        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" class="btn" />
+						    </div>
+						</form>
+                    </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

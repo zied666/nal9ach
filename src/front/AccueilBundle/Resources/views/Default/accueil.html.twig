@@ -1,0 +1,66 @@
+{% extends ':front:base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block body %}
+    <div class="container" >
+        <div class="row">
+            <div class="span12">
+                <h5 style="text-align: center">{{ accueil.text2 }}</h5>
+            </div>
+            <div class="span4 MMidle" style="text-align: center;">
+                {% for categorie in categories %}
+                    <a href="{{ path('liste_annonce',{'categorie':categorie.id}) }}">  <h5 style="text-align: left;"><img src="{{ asset('img/accueil'~loop.index~'.png') }}" style="margin-right: 30px;width: 45px;height: 45px;" > {{ categorie }} </h5></a><hr style="margin: 0;">
+                        {% endfor %} 
+            </div>
+            <div class="span4">{% include ':front:map.html.twig' %}</div>
+            <div class="span4 MMidle" style="">
+                <div class="sidebar-item opening-time" id="opening_time-4" style="margin-right: auto;margin-left: auto;margin-bottom: 0px;">
+                    <div class="time-table">
+                        <dl class="week-day" style="padding: 7px;">
+                            <dd style="text-align: center;">
+                                <a href="{{ path('liste_annonce',{'region':GrandTunis.id}) }}" title="{{ GrandTunis.id }}" class="lien{{ GrandTunis.id }} region" >{{ GrandTunis.libelle }}</a> <br>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="span2">
+                <div class="sidebar-item opening-time" id="opening_time-4" style="margin-right: auto;margin-left: auto;">
+                    <div class="time-table">
+                        {% set i=0 %}
+                        {% for region in regions if region.id !=36 %}
+                            <dl class="week-day {% if i%2==0 %}light-bg{% endif %}" style="padding: 7px;">
+                                <dd style="text-align: center;">
+                                    <a href="{{ path('liste_annonce',{'region':region.id}) }}" title="{{ region.id }}" class="lien{{ region.id }} region" >{{ region.libelle }}</a> <br>
+                                </dd>
+                            </dl>
+                            {% set i=i+1%}    
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="span2">
+                <div class="sidebar-item opening-time" id="opening_time-4">
+                    <div class="time-table">
+                        {% set i=0 %}
+                        {% for region in regions2 %}
+                            <dl class="week-day {% if i%2==0 %}light-bg{% endif %}" style="padding: 7px;">
+                                <dd style="text-align: center;">
+                                    <a href="{{ path('liste_annonce',{'region':region.id}) }}" title="{{ region.id }}" class="lien{{ region.id }} region" >{{ region.libelle }}</a> <br>
+                                </dd>
+                            </dl>
+                            {% set i=i+1%}    
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
+    <style>
+        .MMidle{
+            padding-top: 40px
+        }
+    </style>
+    {% include ':front:lastnews.html.twig' %}
+    {% include ':front:partenaire.html.twig' %}
+{% endblock %}

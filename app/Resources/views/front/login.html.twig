@@ -1,0 +1,40 @@
+<!--  = Login =  -->
+<div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="loginModalLabel">Authentification</h3>
+    </div>
+    <div class="modal-body">
+        <form method="post" action="{{ path("fos_user_security_check") }}" />
+        <input type="hidden" name="_csrf_token" value="" />
+        <div class="control-group">
+            <label class="control-label hidden shown-ie8" for="inputEmail">Nom d'utilisateur</label>
+            <div class="controls">
+                <input  type="text" class="input-block-level" placeholder="Login" id="username" name="_username" value="" required="required" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label hidden shown-ie8" for="inputPassword">Mot de passe</label>
+            <div class="controls">
+                <input class="input-block-level" type="password" placeholder="Mot de passe" id="password" name="_password" required="required" />
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                    Garder ma session active
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary input-block-level bold higher">
+          S'authentifié
+        </button>
+        </form>
+        {% if false %}
+        <p class="center-align push-down-0">
+            <a href="#" data-dismiss="modal">Forgot your password?</a>
+        </p>
+        {% endif %}
+    </div>
+</div>

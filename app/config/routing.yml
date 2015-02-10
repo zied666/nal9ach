@@ -1,0 +1,61 @@
+#FOSUSERBUNDLE
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
+#HWIOAuthBundle routes
+hwi_oauth_security:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix: /loginsocial
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix: /loginsocial
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /loginsocial
+
+facebook_login:
+    pattern: /loginsocial/check-facebook
+    
+facebook_log:
+    pattern: /loginsocial/facebook
+
+google_login:
+    pattern: /loginsocial/check-google
+google_log:
+    pattern: /loginsocial/google
+    
+#APPLICATION
+front_service:
+    resource: "@frontServiceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+front_annonce:
+    resource: "@frontAnnonceBundle/Resources/config/routing.yml"
+    prefix:   /annonce
+
+admin_page:
+    resource: "@adminPageBundle/Resources/config/routing.yml"
+    prefix:   /admin/page
+
+admin_loc:
+    resource: "@adminLocBundle/Resources/config/routing.yml"
+    prefix:   /admin/loc
+
+admin_ref:
+    resource: "@adminRefBundle/Resources/config/routing.yml"
+    prefix:   /admin/ref
+
+admin_user:
+    resource: "@adminUserBundle/Resources/config/routing.yml"
+    prefix:   /admin/user
+
+front_accueil:
+    resource: "@frontAccueilBundle/Resources/config/routing.yml"
+    prefix:   /
+
+admin_general:
+    resource: "@adminGeneralBundle/Resources/config/routing.yml"
+    prefix:   /admin
+

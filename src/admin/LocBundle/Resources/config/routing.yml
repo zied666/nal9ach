@@ -1,0 +1,11 @@
+admin_loc_ville:
+    resource: "@adminLocBundle/Resources/config/routing/ville.yml"
+    prefix:   /ville
+
+admin_loc_region:
+    resource: "@adminLocBundle/Resources/config/routing/region.yml"
+    prefix:   /region
+
+admin_loc_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: adminLocBundle:Default:index }

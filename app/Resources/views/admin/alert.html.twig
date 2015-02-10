@@ -1,0 +1,14 @@
+<div class="row-fluid">
+    <div class="span12">
+            {% for k,v in app.session.getFlashBag %}
+                <div class="alert {{ k }}">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <strong>
+                        {% if k == "alert-error" %}Alert - {% endif %}
+                        {% if k == "alert-success" %}Succes -  {% endif %}
+                    </strong>
+                        {{ v.0 }}
+            </div>
+            {% endfor %}
+    </div>
+</div>

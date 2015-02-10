@@ -1,0 +1,184 @@
+<?php
+
+namespace admin\RefBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SousService
+ *
+ * @ORM\Table()
+ * @ORM\Table(name="ser_sous_services")
+ * @ORM\Entity(repositoryClass="admin\RefBundle\Entity\SousServiceRepository")
+ */
+class SousService
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=50)
+     */
+    private $libelle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ordre", type="integer")
+     */
+    private $ordre;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="visible", type="boolean")
+     */
+    private $visible;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="admin\RefBundle\Entity\Service", inversedBy="sousServices")
+     * @ORM\JoinColumn(name="Service_ID", referencedColumnName="id")
+     */
+    private $service;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     * @return SousService
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string 
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return SousService
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     * @return SousService
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return integer 
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
+    }
+
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     * @return SousService
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean 
+     */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
+
+    /**
+     * Set service
+     *
+     * @param \admin\RefBundle\Entity\Service $service
+     * @return SousService
+     */
+    public function setService(\admin\RefBundle\Entity\Service $service = null)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return \admin\RefBundle\Entity\Service 
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+}

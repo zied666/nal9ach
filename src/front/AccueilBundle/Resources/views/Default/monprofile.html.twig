@@ -1,0 +1,37 @@
+{% extends ":front:base.html.twig" %}
+{% block title %}Mon profile{% endblock %}
+{% block body %}
+        <div class="darker-stripe">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{{ path('accueil') }}">Accueil</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="javascript:void(0)">Mon profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="push-up top-equal blocks-spacer-last">
+            <div class="row">
+                <div class="span12">
+                    <div class="title-area">
+                        <h1 class="inline"><span class="light">Mon </span>Profile</h1>
+                    </div>
+                </div>
+                <section class="span12 single single-page">
+                    <section class="contact-form-container">
+                        {{ form(form) }}    
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

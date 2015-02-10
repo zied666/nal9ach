@@ -1,0 +1,23 @@
+{% if accueil.facebook!="" %}<a href="{{ accueil.facebook }}"><span class="IICON icon-facebook"></span></a>{% endif %}
+{% if accueil.twitter!="" %}<a href="{{ accueil.twitter }}"><span class="IICON icon-twitter"></span></a>{% endif %}
+{% if accueil.googleplus!="" %}<a href="{{ accueil.googleplus }}"><span class="IICON icon-google-plus "></span></a>{% endif %}
+{% if accueil.linkedin!="" %}<a href="{{ accueil.linkedin }}"><span class="IICON icon-linkedin"></span></a>{% endif %}
+<style>
+    .icon-facebook{
+        color: #47639E;
+    }
+    .icon-linkedin{
+        color: #0077B5;
+    }
+    .icon-google-plus  {
+        color: #D73D32;
+    }
+    .icon-twitter{
+        color: #55ACEE;
+    }
+    .IICON
+    {
+        font-size: 20px;
+        padding: 8px;
+    }
+</style>

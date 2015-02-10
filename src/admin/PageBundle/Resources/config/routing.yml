@@ -1,0 +1,32 @@
+admin_page_news:
+    resource: "@adminPageBundle/Resources/config/routing/news.yml"
+    prefix:   /news
+
+page_contact:
+    path:     /contact
+    defaults: { _controller: adminPageBundle:Default:contact }
+page_accueil:
+    path:     /accueil
+    defaults: { _controller: adminPageBundle:Default:accueil }
+
+marketing:
+    path:     /marketing
+    defaults: { _controller: adminPageBundle:Default:marketing }
+    
+SLider:
+    path:     /slider
+    defaults: { _controller: adminPageBundle:Slider:liste }    
+
+footer:
+    path:     /footer
+    defaults: { _controller: adminPageBundle:Default:footer }    
+
+Partenaire:
+    path:     /partenaire
+    defaults: { _controller: adminPageBundle:Partenaire:liste }    
+suppr_slider:
+    path:     /suppr/{id}
+    defaults: { _controller: adminPageBundle:Slider:suppr }    
+suppr_partenaire:
+    path:     /Psuppr/{id}
+    defaults: { _controller: adminPageBundle:Partenaire:suppr }    

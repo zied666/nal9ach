@@ -1,0 +1,24 @@
+{% extends ":admin:base.html.twig" %}
+{% block title %}Page Accueil{% endblock %}
+
+{% block body %}
+<nav>
+        <div id="jCrumbs" class="breadCrumb module">
+
+            <ul>{% block sitmap %}
+                <li>    
+                    <a href="{{ path("admin_general_homepage") }}"><i class="icon-home"></i></a>
+                </li>
+                <li>    
+                    <a href="#">Page accueil</a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+</nav>  
+{% if accueil != NULL %}
+    <img style="width: 150px" src="{{ asset(accueil.getUploadDir~'/'~accueil.logo) }}" > 
+{% endif %}
+{{ form(form) }}        
+
+{% endblock %}

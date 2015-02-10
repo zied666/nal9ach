@@ -1,0 +1,76 @@
+{% extends ":front:base.html.twig" %}
+{% block title %}Athentification{% endblock %}
+{% block body %}
+    <div class="darker-stripe">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{{ path('accueil') }}">Accueil</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="javascript:void(0)">Authentification</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="push-up top-equal blocks-spacer-last">
+            <div class="row">
+                <div class="span12">
+                    <div class="title-area">
+                        <h1 class="inline">Authentification</h1>
+                    </div>
+                </div>
+                <section class="span6 single single-page">
+                    {% if error %}
+                        <section id="alertBoxes">
+                            <div class="alert alert-danger in fade">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ error.messageKey|trans(error.messageData, 'security') }}
+                            </div>
+                        </section>
+                    {% endif %}
+                    <section class="contact-form-container">
+                        {% trans_default_domain 'FOSUserBundle' %}    
+                        <form action="{{ path("fos_user_security_check") }}" method="post" id="commentform"  />
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        <div>
+                            <label for="author">Nom d'utilisateur ou Email <span class="red-clr bold">*</span> :</label>
+                            <input type="text"  placeholder="Nom d'utilisateur ou Email" id="username" name="_username" value="{{ last_username }}" required="required" />
+                        </div>
+                        <div>
+                            <label for="author">Mot de passe <span class="red-clr bold">*</span> :</label>
+                            <input type="password" placeholder="Mot de passe" id="password" name="_password" required="required"  />
+                            <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oubilié ?</a>
+                        </div>
+                        <p>
+
+                            <label for="remember_me"><input type="checkbox" id="remember_me" name="_remember_me" value="on" style="vertical-align: sub;" /> Garder ma session active </label>
+                        </p>
+                        <p>
+                            <button class="btn btn-primary bold" type="submit" tabindex="5" id="submit">S'authentifier</button>
+                            ou
+                            <a href="{{ path('fos_user_registration_register') }}"><button class="btn btn-primary bold" type="button" tabindex="5" id="submit">S'inscrire</button></a>
+                        </p>
+                        </form>
+                    </section>
+                </section>
+                <section class="span6 single single-page">
+                    <div >
+                        <a class="btn btn-facebook" href="{{ path('facebook_log') }}" >
+                            <span class="icon-facebook " style="color:white"></span> | Se connecter via Facebook
+                        </a>
+                                <a class="btn btn-google-plus g-signin" href="{{ path('google_log') }}">
+                                <span class=" icon-google-plus " style="color:white"></span> | Se connecter via Google
+                            </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

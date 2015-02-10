@@ -1,0 +1,70 @@
+{#<div class="container" >
+    <div class="row">
+        <h1 style="font-size: 40px"><strong>{{ status_code }}</strong> {{ status_text }} {#- {{ exception.class|abbr_class }}#}</h1>
+{#
+        {% if app.user  and is_granted("ROLE_ADMIN") %}
+            <h1 style="color: red;font-size: 25px">{{ exception.message|nl2br|format_file_from_text }}</h1>
+            {% set previous_count = exception.allPrevious|length %}
+            {% for position, e in exception.toarray %}
+                {% include 'TwigBundle:Exception:traces.html.twig' with { 'exception': e, 'position': position, 'count': previous_count } only %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+  #}
+<style>
+    .darker-row{
+        display: none;
+    }
+</style>
+<div class="darker-stripe">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="{{ path('accueil') }}">Accueil</a>
+                    </li>
+                    <li><span class="icon-chevron-right"></span></li>
+                    <li>
+                        <a href="javascript:void(0)">Erreur</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="push-up blocks-spacer">
+        <div class="row">
+
+            <!--  ==========  -->
+            <!--  = Main content =  -->
+            <!--  ==========  -->
+            <section class="span12">
+
+                <p class="container-404">
+                <h1 style="text-align: center;font-size: 60px"><strong>{{ status_code }}</strong> {{ status_text }}</h1>
+                </p>
+
+                <hr />
+                <p class="center-align size-16">
+                    On dirait que quelque chose se est mal passé! La page que vous cherchez ne est pas ici. 
+                </p>
+                <p class="center-align size-16 push-down-50">
+                    Go <a href="{{ path('accueil') }}">Accueil</a>
+                </p>
+                <p class="center-align size-16 push-down-50">
+                    {% if app.user  and is_granted("ROLE_ADMIN") %}
+                    <h1 style="color: red;font-size: 25px">{{ exception.message|nl2br|format_file_from_text }}</h1>
+                    {% set previous_count = exception.allPrevious|length %}
+                    {% for position, e in exception.toarray %}
+                        {% include 'TwigBundle:Exception:traces.html.twig' with { 'exception': e, 'position': position, 'count': previous_count } only %}
+                    {% endfor %}
+                {% endif %}
+                </p>
+            </section> <!-- /main content -->
+        </div>
+    </div>
+</div> <!-- /container -->

@@ -1,0 +1,25 @@
+{% extends ":admin:base.html.twig" %}
+{% block title %}Page marketing{% endblock %}
+
+{% block body %}
+    <nav>
+        <div id="jCrumbs" class="breadCrumb module">
+
+            <ul>{% block sitmap %}
+                <li>    
+                    <a href="{{ path("admin_general_homepage") }}"><i class="icon-home"></i></a>
+                </li>
+                <li>    
+                    <a href="#">marketing</a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+</nav>  
+            <img style="width: 150px" src="{{ asset(marketing.getUploadDir~'/'~marketing.banniere) }}" > 
+            <img style="width: 150px" src="{{ asset(marketing.getUploadDir~'/'~marketing.photo1) }}" > 
+            <img style="width: 150px" src="{{ asset(marketing.getUploadDir~'/'~marketing.photo2) }}" > 
+            <hr><hr><hr><hr>
+ {{ form(form) }}        
+            
+{% endblock %}

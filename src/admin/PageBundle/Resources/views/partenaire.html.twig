@@ -1,0 +1,47 @@
+{% extends ":admin:base.html.twig" %}
+{% block title %}Partenaire{% endblock %}
+
+{% block body %}
+    <nav>
+        <div id="jCrumbs" class="breadCrumb module">
+
+            <ul>{% block sitmap %}
+                <li>    
+                    <a href="{{ path("admin_general_homepage") }}"><i class="icon-home"></i></a>
+                </li>
+                <li>    
+                    <a href="#">Partenaire</a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+</nav>  
+ {{ form(form) }}        
+    <div class="row-fluid">
+        <div class="span12">
+            <table id="example" class="table table-striped table-bordered dTableR">
+	<thead>
+		<tr>
+			<th width="10%">logo</th>
+			<th width="10%">libellé</th>
+			<th width="10%">lien</th>
+			<th width="8%">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+            {% for partenaire in partenaires %}
+		<tr>
+                    <td><img style="width: 100px" src="{{ asset(partenaire.getUploadDir~'/'~partenaire.logo) }}" > </td>
+                    <td>{{ partenaire.libelle }}</td>
+                    <td>{{ partenaire.lien }}</td>
+                    <td>
+                        <a href="{{ path("suppr_partenaire",{'id':partenaire.id}) }}" title="Supprimer" onclick="javascript:return(confirm('Etes-vous certain de vouloir supprimer cette lgne ?'))"><i class="icon-trash"></i></a>
+                    </td>
+		</tr>
+            {%endfor%}
+	</tbody>
+
+</table>
+        </div>
+    </div>       
+{% endblock %}

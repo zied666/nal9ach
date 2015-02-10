@@ -1,0 +1,24 @@
+<footer>
+    <div class="foot-light">
+        <div class="container">
+            <div class="row">
+                {{ render(controller('frontAccueilBundle:Front:footer')) }}
+        </div>
+    </div> <!-- /upper footer -->
+    {% include ':front:menufooter.html.twig' %}
+    <div class="foot-last">
+        <a href="#" id="toTheTop">
+            <span class="icon-chevron-up"></span>
+        </a>
+        <div class="container">
+            <div class="row">
+                <div class="span6">
+                    &copy; Copyright {{ "now"|date("Y") }} <a href="javascript:void(0)">Nal9ach</a> All Rights Reserved.
+                </div>
+                <div class="span6">
+                    <div class="pull-right"> </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /bottom footer -->
+</footer> <!-- /footer -->

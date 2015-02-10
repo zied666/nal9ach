@@ -1,0 +1,63 @@
+{% extends ':admin:base.html.twig' %}
+
+{% block body -%}
+    <nav>
+        <div id="jCrumbs" class="breadCrumb module">
+            <ul>{% block sitmap %}
+                <li>    
+                    <a href="{{ path("admin_general_homepage") }}"><i class="icon-home"></i></a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+</nav>
+
+<div class="row-fluid">
+    <div class="span12">
+        <ul class="dshb_icoNav tac">
+            <li><a href="{{ path('otherUser') }}" style="background-image: url({{ asset('img/gCons/multi-agents.png') }})"><span class="label label-success">{{ users }}</span> Utilisateurs</a></li>
+            <li><a href="{{ path('region') }}" style="background-image: url({{ asset('img/gCons/world.png') }})"><span class="label label-success">{{ regions }}</span> Localisation</a></li>
+            <li><a href="{{ path('page_accueil') }}" style="background-image: url({{ asset('img/gCons/configuration.png') }})">Page accueil</a></li>
+            <li><a href="{{ path('Partenaire') }}" style="background-image: url({{ asset('img/gCons/configuration.png') }})">Partenaires</a></li>
+            <li><a href="{{ path('footer') }}" style="background-image: url({{ asset('img/gCons/configuration.png') }})">Footer</a></li>
+            <li><a href="{{ path('Partenaire') }}" style="background-image: url({{ asset('img/gCons/configuration.png') }})">Partenaires</a></li>
+            <li><a href="{{ path('page_contact') }}" style="background-image: url({{ asset('img/gCons/configuration.png') }})">Page contact</a></li>
+              
+            {% if false %}
+                <li><a href="javascript:void(0)" style="background-image: url({{ asset('img/gCons/lab.png') }})">Lab</a>
+                <li><a href="javascript:void(0)" style="background-image: url({{ asset('img/gCons/van.png') }})"><span class="label label-success">$2851</span> Delivery</a></li>
+                <li><a href="javascript:void(0)" style="background-image: url({{ asset('img/gCons/pie-chart.png') }})">Charts</a></li>
+                <li><a href="javascript:void(0)" style="background-image: url({{ asset('img/gCons/edit.png') }})">Add New Article</a></li>
+                <li><a href="javascript:void(0)" style="background-image: url({{ asset('img/gCons/add-item.png') }})"> Add New Page</a></li>
+                <li><a href="javascript:void(0)" style="background-image: url({{ asset('img/gCons/chat-.png') }})"><span class="label label-important">26</span> Comments</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
+
+    {% block script %}
+        {{ parent() }}
+        <script src="{{ asset('lib/jquery-ui/jquery-ui-1.8.20.custom.min.js') }}"></script>
+        <!-- touch events for jquery ui-->
+        <script src="{{ asset('js/forms/jquery.ui.touch-punch.min.js') }}"></script>
+        <!-- multi-column layout -->
+        <script src="{{ asset('js/jquery.imagesloaded.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.wookmark.js') }}"></script>
+        <!-- responsive table -->
+        <script src="{{ asset('js/jquery.mediaTable.min.js') }}"></script>
+        <!-- small charts -->
+        <script src="{{ asset('js/jquery.peity.min.js') }}"></script>
+        <!-- charts -->
+        <script src="{{ asset('lib/flot/jquery.flot.min.js') }}"></script>
+        <script src="{{ asset('lib/flot/jquery.flot.resize.min.js') }}"></script>
+        <script src="{{ asset('lib/flot/jquery.flot.pie.min.js') }}"></script>
+        <!-- calendar -->
+        <script src="{{ asset('/fullcalendar/fullcalendar.min.js') }}"></script>
+        <!-- sortable/filterable list -->
+        <script src="{{ asset('lib/list_js/list.min.js') }}"></script>
+        <script src="{{ asset('lib/list_js/plugins/paging/list.paging.min.js') }}"></script>
+        <!-- dashboard functions -->
+        <script src="{{ asset('js/gebo_dashboard.js') }}"></script>
+    {% endblock %}

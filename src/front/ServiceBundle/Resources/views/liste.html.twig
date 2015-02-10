@@ -1,0 +1,147 @@
+{% extends ":front:base.html.twig" %}
+{% block title %}Liste des annonces {% endblock %}
+{% block body %}
+
+    <div class="darker-stripe">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{{ path('accueil') }}">Accueil</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="javascript:void(0)">Liste des annonces</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="push-up">
+            <div class="row">
+                {% include 'frontServiceBundle::filtre.html.twig' %}
+                <section class="span9 blocks-spacer">
+                    <div class="underlined push-down-20">
+                        <div class="row">
+                            <div class="span5">
+                                {% if search !="_" %}
+                                    <h3>
+                                        <span class="light">Recherche : </span> &quot;{{ search }}&quot;
+                                    </h3>
+                                {% endif %}
+                            </div>
+                            <div class="span4">
+                                <div class="form-inline sorting-by"> 
+                                    <form method="POST" action="{{ path('Filtre',{'page':page,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}" style="margin: 0px" >
+                                        <label for="isotopeSorting" class="black-clr">Sort:</label>
+                                        <select onchange="submit();" id="isotopeSorting" name="FiltreOrderBy" class="span3">
+                                            <option value='prix-desc'            {% if(orderby=='prix' and desc=='desc') %}selected{% endif %} />Par Prix  &uarr;
+                                            <option value='prix-asc'           {% if(orderby=='prix' and desc=='asc') %}selected{% endif %} />Par Prix  &darr;
+                                            <option value='titre-desc'         {% if(orderby=='titre' and desc=='desc') %}selected{% endif %}/>Par Titre  &uarr;
+                                            <option value='titre-asc'        {% if(orderby=='titre' and desc=='asc') %}selected{% endif %}/>Par Titre  &darr;
+                                            <option value='dateCreation-desc'    {% if(orderby=='dateCreation' and desc=='desc') %}selected{% endif %} />Par date  &uarr;
+                                            <option value='dateCreation-asc'   {% if(orderby=='dateCreation' and desc=='asc') %}selected{% endif %} />Par date  &darr;
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                            <span class="span9">{{ count }} résultats trouvés</span>
+                        </div>
+                    </div> <!-- /title -->
+                    <div class=" popup-products underlined push-down-20">
+                        <div id="isotopeContainer" class="isotope-container" style="min-height: 300px">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+										<th></th>
+                                        <th>Région</th>
+                                        <th>Ville</th>
+                                        <th>Titre</th>
+                                        <th>Prix</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for annonce in annonces %}
+                                        <tr  class="product clickableRow"  href="{{ path('front_service_homepage',{'titre':annonce.GetUrl,'id':annonce.id}) }}">
+											<td>{% if annonce.getFirstPhoto!="img/nopic.jpg" %}<li class="icon-camera"></li>{% endif %}</td>
+                                            <td>{{ annonce.region }}</td>
+                                            <td>{{ annonce.ville }}</td>
+                                            <td><strong>{{ annonce.titre|title|slice(0, 30)   }}</strong></td>
+                                            <td>{{ annonce.prix|slice(0, 20)  }}</td>
+                                            <td>{{ annonce.dateCreation|date('d/m/Y') }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="pagination pagination-centered">
+                        <ul>
+                            {% if page==1 %}
+                                <li><a href="javascript:void(0)" class="btn disabled"><span class="icon-chevron-left"></span></a></li>
+                            {% else %}
+                                <li><a href="{{ path('Filtre',{'page':page-1,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}" class="btn  btn-primary "><span class="icon-chevron-left"></span></a></li>
+                            {% endif %}
+
+                            {% for i in 1..nbrpage %}
+                                <li {% if i==page %}class="active"{% endif %}><a href="{{ path('Filtre',{'page':i,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}">{{ i }}</a></li>
+                            {% endfor %}
+
+
+                            {% if page==nbrpage %}
+                                <li><a href="javascript:void(0)" class="btn disabled"><span class="icon-chevron-right"></span></a></li>
+                            {% else %}
+                                <li><a href="{{ path('Filtre',{'page':page+1,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}" class="btn btn-primary   btn-primary"><span class="icon-chevron-right"></span></a></li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                </section> <!-- /main content -->
+            </div>
+        </div>
+    </div> <!-- /container -->
+    <style>
+        .prix{
+            float: right ;
+        }
+        .caret2{
+            transform: rotate(-90deg);
+            vertical-align: middle;
+        }
+        @media screen and (max-width: 767px){
+            .product-img {
+                display: none;
+            }
+        }
+        .clickableRow
+        {
+            cursor: pointer;
+        }
+        .isotope-container table tr td , .isotope-container table tr th
+        {
+            text-align: center;
+        }
+    </style>
+
+{% endblock %}
+{% block jquery %}
+    <script>
+        $(document).ready(function () {
+            $(".clickableRow").click(function () {
+                window.document.location = $(this).attr("href");
+            });
+            $(".clickableRow").mouseover(function () {
+                $(this).css("background-color", "#F5F5DC")
+            }).mouseout(function () {
+                $(this).css("background-color", "inherit")
+            })
+        });
+    </script>
+{% endblock %}

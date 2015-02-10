@@ -1,0 +1,48 @@
+{% extends ":front:base.html.twig" %}
+{% block title %}Mot passe oublié{% endblock %}
+{% block body %}
+    <div class="darker-stripe">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{{ path('accueil') }}">Accueil</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="javascript:void(0)">Mot passe oublié</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="push-up top-equal blocks-spacer-last">
+            <div class="row">
+                <div class="span12">
+                    <div class="title-area">
+                        <h1 class="inline">Mot passe oublié</h1>
+                    </div>
+                </div>
+                <section class="span12 single single-page">
+                    <section class="contact-form-container">
+                        {% trans_default_domain 'FOSUserBundle' %}
+                        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                            <div>
+                                {% if invalid_username is defined %}
+                                    <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                                {% endif %}
+                                <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                                <input type="text" id="username" name="username" required="required" />
+                            </div>
+                            <div>
+                                <input class="btn btn-primary bold" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+                            </div>
+                        </form>
+                    </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

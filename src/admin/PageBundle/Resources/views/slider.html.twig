@@ -1,0 +1,47 @@
+{% extends ":admin:base.html.twig" %}
+{% block title %}Slider{% endblock %}
+
+{% block body %}
+    <nav>
+        <div id="jCrumbs" class="breadCrumb module">
+
+            <ul>{% block sitmap %}
+                <li>    
+                    <a href="{{ path("admin_general_homepage") }}"><i class="icon-home"></i></a>
+                </li>
+                <li>    
+                    <a href="#">Slider</a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+</nav>  
+ {{ form(form) }}        
+    <div class="row-fluid">
+        <div class="span12">
+            <table id="example" class="table table-striped table-bordered dTableR">
+	<thead>
+		<tr>
+			<th width="10%">Photo</th>
+			<th width="10%">Ordre</th>
+			<th width="10%">Visible</th>
+			<th width="8%">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+            {% for slider in sliders %}
+		<tr>
+                    <td><img style="width: 100px" src="{{ asset(slider.getUploadDir~'/'~slider.photo) }}" > </td>
+                    <td>{{ slider.ordre }}</td>
+                    <td>{% if slider.visible==1 %}Visible{% else %}Invisible{% endif %}</td>
+                    <td>
+                        <a href="{{ path("suppr_slider",{'id':slider.id}) }}" title="Supprimer" onclick="javascript:return(confirm('Etes-vous certain de vouloir supprimer ce message ?'))"><i class="icon-trash"></i></a>
+                    </td>
+		</tr>
+            {%endfor%}
+	</tbody>
+
+</table>
+        </div>
+    </div>       
+{% endblock %}

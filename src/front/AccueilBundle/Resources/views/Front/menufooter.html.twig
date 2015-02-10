@@ -1,0 +1,29 @@
+<div class="span2">
+    <div class="main-titles lined">
+        <h5 class="MinTitle"><span class="light">Plan  </span> de site</h5>
+    </div>
+    <ul class="nav bold">
+        <li><a href="{{ path('accueil') }}">Accueil</a></li>
+        <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+        <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+        <li><a href="{{ path('contact') }}">Contact</a></li>
+    </ul>
+</div>
+{% for categorie in categories %}
+    <div class="span2">
+        <div class="main-titles lined">
+            <h5 class="MinTitle">{{ categorie }}</h5>
+        </div>
+        <ul class="nav">
+            {% for service in categorie.services %}
+                    <li><a href="{{ path('liste_annonce',{'categorie':service.categorie.id,'service':service.id}) }}">{{ service.libelle }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}
+<style>
+    .MinTitle
+    {
+        font-size: 14px;
+    }
+</style>

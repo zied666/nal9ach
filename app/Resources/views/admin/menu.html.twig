@@ -1,0 +1,106 @@
+<a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r" id="SideBar" title="Hide Sidebar">Sidebar switch</a>
+<div class="sidebar">
+<div class="antiScroll">
+<div class="antiscroll-inner">
+    <div class="antiscroll-content">
+            <div class="sidebar_inner">
+                    <form action="index.php?uid=1&amp;page=search_page" class="input-append" method="post" >
+                            <input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Search..." /><button type="submit" class="btn"><i class="icon-search"></i></button>
+                    </form>
+                    <div id="side_accordion" class="accordion">
+                            <div class="accordion-group">
+                                    <div class="accordion-heading ">
+                                            <a href="#collapse3" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                                    <i class="icon-user"></i> Utilisateurs
+                                            </a>
+                                    </div>
+                                    <div class="accordion-body {%if app.request.getPathInfo|split('/admin/user')|length > 1  %}in{% endif %}  collapse " id="collapse3">
+                                            <div class="accordion-inner">
+                                                    <ul class="nav nav-list">
+                                                        <li class="{% if app.request.getPathInfo|split('/liste')|length > 1  %}active{% endif %}"><a href="{{ path("listeUser") }}">Administrateurs</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/utilisateur')|length > 1  %}active{% endif %}"><a href="{{ path("otherUser") }}">Utilisateurs</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/ajout')|length > 1  %}active{% endif %}"><a href="{{ path("addUser") }}">Ajouter un administrateur</a></li>
+                                                    </ul>
+                                            </div>
+                                    </div>
+                            </div>
+                            <div class="accordion-group">
+                                    <div class="accordion-heading ">
+                                            <a href="#collapseOne" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                                    <i class="icon-list"></i> Réferentiel
+                                            </a>
+                                    </div>
+                                    <div class="accordion-body {%if app.request.getPathInfo|split('/admin/ref')|length > 1  %}in{% endif %}  collapse " id="collapseOne">
+                                            <div class="accordion-inner">
+                                                    <ul class="nav nav-list">
+                                                        <li class="{% if app.request.getPathInfo|split('/categorie')|length > 1  %}active{% endif %}"><a href="{{ path("categorie") }}">Categories</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/service')|length > 1  %}active{% endif %}"><a href="{{ path("service") }}">Services</a></li>
+                                                    </ul>
+                                            </div>
+                                    </div>
+                            </div>
+                            <div class="accordion-group">
+                                    <div class="accordion-heading ">
+                                            <a href="#collapsetwo" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                                    <i class="icon-map-marker"></i> Localisation
+                                            </a>
+                                    </div>
+                                    <div class="accordion-body {%if app.request.getPathInfo|split('/admin/loc')|length > 1  %}in{% endif %}  collapse " id="collapsetwo">
+                                            <div class="accordion-inner">
+                                                    <ul class="nav nav-list">
+                                                        <li class="{% if app.request.getPathInfo|split('/region')|length > 1  %}active{% endif %}"><a href="{{ path("region") }}">Région</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/ville')|length > 1  %}active{% endif %}"><a href="{{ path("ville") }}">Ville</a></li>
+                                                    </ul>
+                                            </div>
+                                    </div>
+                            </div>
+                            <div class="accordion-group">
+                                    <div class="accordion-heading ">
+                                            <a href="#collapse4" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                                    <i class="icon-list-alt"></i> Pages
+                                            </a>
+                                    </div>
+                                    <div class="accordion-body {%if app.request.getPathInfo|split('/admin/page')|length > 1  %}in{% endif %}  collapse " id="collapse4">
+                                            <div class="accordion-inner">
+                                                    <ul class="nav nav-list">
+                                                        <li class="{% if app.request.getPathInfo|split('/accueil')|length > 1  %}active{% endif %}"><a href="{{ path("page_accueil") }}">Accueil</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/contact')|length > 1  %}active{% endif %}"><a href="{{ path("page_contact") }}">Contact</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/marketing')|length > 1  %}active{% endif %}"><a href="{{ path("marketing") }}">Marketing</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/slider')|length > 1  %}active{% endif %}"><a href="{{ path("SLider") }}">Slider</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/partenaire')|length > 1  %}active{% endif %}"><a href="{{ path("Partenaire") }}">Partenaire</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/news')|length > 1  %}active{% endif %}"><a href="{{ path("news") }}">News</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/footer')|length > 1  %}active{% endif %}"><a href="{{ path("footer") }}">Footer</a></li>
+                                                    </ul>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="push"></div>
+            </div>
+             {% if true %}
+            <div class="sidebar_info">
+                    <ul class="unstyled">
+                        {{ render(controller('adminPageBundle:Front:donnees')) }}
+                    </ul>
+            </div> 
+            {% endif %}
+    </div>
+</div>
+</div>
+
+</div>
+
+    
+    <style>
+        #SideBar{
+            display: none
+        }
+        @media (max-width: 979px) {
+            #SideBar{
+            display: block
+            }
+            .btn_menu{
+                display: none;
+            }
+        }
+    </style>

@@ -1,0 +1,31 @@
+{% extends ':admin:base.html.twig' %}
+
+{% block body -%}
+<nav>
+        <div id="jCrumbs" class="breadCrumb module">
+
+            <ul>{% block sitmap %}
+                <li>    
+                    <a href="{{ path("admin_general_homepage") }}"><i class="icon-home"></i></a>
+                </li>
+                <li>    
+                    <a href="{{ path('news') }}">News</a>
+                </li>
+                <li>    
+                    <a href="#">Modification News</a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+</nav>  
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('news') }}">
+            Liste
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

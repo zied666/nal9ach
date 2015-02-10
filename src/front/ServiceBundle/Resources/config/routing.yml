@@ -1,0 +1,26 @@
+front_service_homepage:
+    path:     /annonces/{titre}-{id}
+    defaults: { _controller: frontServiceBundle:Default:show }
+
+liste_annonce:
+    path:     /annonces/{page}/{region}/{ville}/{categorie}/{service}/{search}/{orderby}/{desc}
+    defaults: { _controller: frontServiceBundle:Default:liste,region:0,ville:0,categorie:0,service:0,search:'_',orderby:'dateCreation',page:1,desc:'desc' }
+    requirements:
+        region:  \d+
+        categorie:  \d+
+        ville:  \d+
+        service:  \d+
+        page:  \d+
+        desc:  asc|desc
+        orderby: prix|titre|dateCreation
+Filtre:
+    path:     /orderby/{page}/{region}/{ville}/{categorie}/{service}/{search}/{orderby}/{desc}
+    defaults: { _controller: frontServiceBundle:Default:filtre,region:0,ville:0,categorie:0,service:0,search:'_',orderby:'dateCreation',page:1,desc:'desc' }
+    requirements:
+        region:  \d+
+        categorie:  \d+
+        ville:  \d+
+        service:  \d+
+        page:  \d+
+        desc:  asc|desc
+        orderby: prix|titre|dateCreation

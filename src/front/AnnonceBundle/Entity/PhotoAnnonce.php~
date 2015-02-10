@@ -1,0 +1,118 @@
+<?php
+
+namespace front\AnnonceBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * PhotoAnnonce
+ *
+ * @ORM\Table(name="ser_annonce_photo")
+ * @ORM\Entity
+ */
+class PhotoAnnonce
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255)
+     * @Assert\File(
+     *      maxSize="2M",
+     *      mimeTypes = {"image/jpeg", "image/gif", "image/png"},
+     *      mimeTypesMessage = "Le fichier choisi ne correspond pas à un fichier valide",
+     *      notFoundMessage = "Le fichier n'a pas été trouvé sur le disque",
+     *      uploadErrorMessage = "Erreur dans l'upload du fichier"
+     * )
+     */
+    private $photo;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="front\AnnonceBundle\Entity\Annonce", inversedBy="photos")
+     * @ORM\JoinColumn(name="annonce_id", referencedColumnName="id")
+     */
+    private $annonce;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     * @return PhotoAnnonce
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string 
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Set annonce
+     *
+     * @param \front\AnnonceBundle\Entity\Annonce $annonce
+     * @return PhotoAnnonce
+     */
+    public function setAnnonce(\front\AnnonceBundle\Entity\Annonce $annonce = null)
+    {
+        $this->annonce = $annonce;
+
+        return $this;
+    }
+
+    /**
+     * Get annonce
+     *
+     * @return \front\AnnonceBundle\Entity\Annonce 
+     */
+    public function getAnnonce()
+    {
+        return $this->annonce;
+    }
+    
+    public function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    public function getUploadDir()
+    {
+        return 'uploads/annonces';
+    }
+    
+    public function upload()
+    {
+        $name=date("His-").$this->photo->getClientOriginalName();
+        $this->photo->move($this->getUploadRootDir(),$name );
+        $this->photo = $name;
+    }
+}

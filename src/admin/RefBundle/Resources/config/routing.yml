@@ -1,0 +1,11 @@
+admin_ref_service:
+    resource: "@adminRefBundle/Resources/config/routing/service.yml"
+    prefix:   /service
+
+admin_ref_categorie:
+    resource: "@adminRefBundle/Resources/config/routing/categorie.yml"
+    prefix:   /categorie
+
+admin_ref_homepage:
+    path:     /
+    defaults: { _controller: adminRefBundle:Default:index }

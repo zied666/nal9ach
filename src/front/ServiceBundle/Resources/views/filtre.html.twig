@@ -1,0 +1,75 @@
+<aside class="span3 left-sidebar">
+    <div class="sidebar-item sidebar-filters" id="sidebarFilters">
+        <div class="underlined">
+            <h3>Filtre</h3>
+        </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#filterS">Mot clé <b class="caret"></b></a>
+            </div>
+            <div id="filterS" class="accordion-body collapse {% if search!='_' %}in{% endif %} ">
+                <div>
+                    <form class="" action="{{ path('Filtre',{'page':page,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}" method="POST" />
+                    <input type="text" value="{% if search!='_' %}{{ search }}{% endif %}"  name="FiltreSearch" />
+                    <button style="margin-top: -8px;" type="submit"><span class="icon-search"></span></button>
+                    </form>
+                </div>
+            </div>
+        </div> <!-- /categories -->
+        <form style="margin: 0px;" method="post" action="{{ path('Filtre',{'page':page,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}">
+            {% for cat in categories %}
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" href="#filterCat{{ cat.id }}">{{ cat.libelle }} <b class="caret"></b></a>
+                    </div>
+                    <div id="filterCat{{ cat.id }}" class="accordion-body collapse {% if categorie==cat.id %}in {% endif %}">
+                        <div class="accordion-inner">
+                            {% for ser in cat.services %}
+                                <label class="LFilte"><input onchange="submit()" type="radio" name="RadioService" value="{{ ser.id }}" class="LRadio" {% if service==ser.id %}checked{% endif %} > {{ ser }}</label>
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>    
+            {% endfor %}
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" href="#filterReg">Régions <b class="caret"></b></a>
+                </div>
+                <div id="filterReg" class="accordion-body collapse {% if region!=0  %}in{% endif %}">
+                    <div class="accordion-inner">
+                        {% for reg in regions %}
+                            <label class="LFilte"><input onchange="submit()" type="radio" name="RadioRegion" value="{{ reg.id }}" class="LRadio" {% if region==reg.id %}checked{% endif %} > {{ reg }}</label>
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>  
+        </form>
+        {% if region!=0 or service!=0 or ville!=0 or search!="_" or orderby!="dateCreation" or desc!="desc"  %}
+            <a href="{{ path('liste_annonce') }}" class="remove-filter" id="removeFilters"><span class="icon-ban-circle"></span>Supprimer tous les filtres</a>
+        {% endif %}
+    </div>
+</aside>
+<style>
+    #SS
+    {
+        position: absolute;
+        display: block;
+        border: medium none;
+        background: none repeat scroll 0% 0% transparent;
+        width: 30px;
+        line-height: 30px;
+        height: 30px;
+        overflow: hidden;
+        padding: 0px;
+        margin: 0px;
+        color: #777;
+    }
+    .LFilte
+    {
+        vertical-align: sub;
+    }
+    .LRadio
+    {
+        vertical-align: inherit;
+    }
+</style>

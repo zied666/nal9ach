@@ -1,0 +1,36 @@
+{% extends ":front:base.html.twig" %}
+{% block title %}Confirmation Email{% endblock %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    <div class="darker-stripe">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{{ path('accueil') }}">Accueil</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="javascript:void(0)">Email de confirmation</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="push-up top-equal blocks-spacer-last">
+            <div class="row">
+                <section class="span12 single single-page">
+                    <section class="contact-form-container">
+                        <h4 class="inline">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</h4>
+                        <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>  
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

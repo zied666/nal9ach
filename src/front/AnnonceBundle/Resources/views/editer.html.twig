@@ -1,0 +1,174 @@
+{% extends ":front:base.html.twig" %}
+{% block title %}Modification{% endblock %}
+{% block body %}
+    <div class="darker-stripe">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{{ path('accueil') }}">Accueil</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="javascript:void(0)">Modification</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="push-up top-equal blocks-spacer-last">
+            <div class="row">
+                <div class="span12">
+                    <div class="title-area">
+                        <h1 class="inline">Modification</h1>
+                    </div>
+                </div>
+                <section class="span12 single single-page">
+                    <section class="contact-form-container">
+                        <form id="commentform" method="post" action="{{ path('edit_annonce',{'id':annonce.id}) }}" class="form form-inline form-contact" enctype="multipart/form-data">
+                            {{ form_widget(form._token) }}    
+                            <p class=" span4">
+                                {{ form_widget(form.titre) }}
+                                <label for="author">Titre<span class="red-clr bold">*</span></label>
+                            </p>
+                            <p class="span4">
+                                {{ form_widget(form.prix) }}
+                                <label for="author">prix</label>
+                            </p>
+                            <p class="span4">
+                                {{ form_widget(form.tel1) }}
+                                <label for="author">Téléphone 1<span class="red-clr bold">*</span></label>
+                            </p>
+                            <p class="span4">
+                                {{ form_widget(form.tel2) }}
+                                <label for="author">Téléphone 2</label>
+                            </p>
+
+                            <p class="span4">
+                                {{ form_widget(form.adresse) }}
+                                <label for="author">Adresse<span class="red-clr bold">*</span></label>
+                            </p>
+                            <p class="span4">
+                                {{ form_widget(form.email) }}
+                                <label for="author">Email</label>
+                            </p>
+
+                            <p class="span4">
+                                {{ form_widget(form.region, {'attr': {'class': 'Region'}}) }}
+                                <label for="author">Région<span class="red-clr bold">*</span></label>
+                            </p>
+                            <p class="span4">
+                                {{ form_widget(form.ville, {'attr': {'class': 'Ville'}}) }}
+                                <label for="author">Ville<span class="red-clr bold">*</span></label>
+                            </p>  
+                            <p class="push-down-20">
+                                {{ form_widget(form.texte, {'attr': {'class': 'input-block-level','placeholder':'votre déscription ici'}}) }}
+                            </p>
+                            <div class="span6">
+                                <h3 class="push-down-20">Catégries :</h3>
+                                {% for cat in categories %}
+                                    <table class="table table-theme table-striped" style="margin-bottom: 0;margin-top: 30px;">
+                                        <thead>
+                                            <tr><th colspan="2" style="text-align: center">{{ cat.libelle }}</th></tr>
+                                        </thead> 
+                                        <tbody>
+                                            {% for ser in cat.services %}
+                                                {% if loop.index is not divisible by(2) %}<tr>{% endif %}
+                                                <td><label> <input style="margin-right: 12px;vertical-align: sub;" type="checkbox" name="services[]" value="{{ ser.id }}" {% if ser in annonce.getServices %}checked{% endif %} >{{ ser.libelle }} </label></td>
+                                                {% if loop.index is  divisible by(2) %}</tr>{% endif %}
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                {% endfor %}
+                            </div> 
+                            <div class="span5">
+                                <h3 class="push-down-20">Photo :</h3>       
+                                <p class="span">
+                                    {{ form_errors(form.photo1) }}
+                                    {{ form_widget(form.photo1) }}
+                                    {% if annonce.photo1!= null %}
+                                        <a href="{{ path('deletephoto1',{'id':annonce.id}) }}" onclick="javascript:return(confirm('Etes-vous certain de vouloir supprimer cette photo ?'))" > <i class="icon-trash "></i></a>
+                                        <div class="span1">
+                                            <div class="picture push-down-20">
+                                                <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo1) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo1) }}" alt="" width="128" height="128" /></a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </p>   
+                                <p class="span">
+                                    {{ form_errors(form.photo2) }}
+                                    {{ form_widget(form.photo2) }}        
+                                    {% if annonce.photo2!= null %}
+                                        <a href="{{ path('deletephoto2',{'id':annonce.id}) }}" onclick="javascript:return(confirm('Etes-vous certain de vouloir supprimer cette photo ?'))"  > <i class="icon-trash "></i></a>
+                                        <div class="span1">
+                                            <div class="picture push-down-20">
+                                                <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo2) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo2) }}" alt="" width="128" height="128" /></a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </p>  
+                                <p class="span">
+                                    {{ form_errors(form.photo3) }}
+                                    {{ form_widget(form.photo3) }}     
+                                    {% if annonce.photo3!= null %}
+                                        <a href="{{ path('deletephoto3',{'id':annonce.id}) }}" onclick="javascript:return(confirm('Etes-vous certain de vouloir supprimer cette photo ?'))" > <i class="icon-trash "></i></a>
+                                        <div class="span1">
+                                            <div class="picture push-down-20">
+                                                <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo3) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo3) }}" alt="" width="128" height="128" /></a>
+                                            </div>
+                                        </div>
+                                    {% endif %} 
+                                </p> 
+                                <p class="span">
+                                    {{ form_errors(form.photo4) }}
+                                    {{ form_widget(form.photo4) }}      
+                                    {% if annonce.photo4!= null %}
+                                        <a href="{{ path('deletephoto4',{'id':annonce.id}) }}" onclick="javascript:return(confirm('Etes-vous certain de vouloir supprimer cette photo ?'))" > <i class="icon-trash "></i></a>
+                                        <div class="span1">
+                                            <div class="picture push-down-20">
+                                                <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo4) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo4) }}" alt="" width="128" height="128" /></a>
+                                            </div>
+                                        </div>
+                                    {% endif %} 
+                                </p>   
+                            </div>
+                            <p style="margin-top: 30px" class="span12">
+                                <button class="btn btn-primary bold" type="submit" tabindex="5" id="submit">Modifier</button>
+                            </p>
+                        </form>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $(".Region").change(function () {
+                $(".Ville").empty();
+                $(".Ville").append('<option value="">Loading...</option>');
+                $(".Ville").trigger("liszt:updated");
+                var id = $(this).val();
+                $.ajax({
+                    url: '{{ path("annonce_ville") }}',
+                    type: 'POST',
+                    data: 'id=' + id,
+                    dataType: 'json',
+                    success: function (data) {
+                        $(".Ville").empty();
+                        $.each(data, function (index, value) {
+                            $(".Ville").append('<option value="' + index + '">' + value + '</option>');
+                            $(".Ville").trigger("liszt:updated");
+                        });
+                    }
+                });
+
+            })
+
+        })
+    </script>                 
+{% endblock %}

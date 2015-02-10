@@ -1,0 +1,209 @@
+{% extends ":front:base.html.twig" %}
+{% block title %}{{ annonce.titre }}{% endblock %}
+{% block meta %}
+    <meta property="og:title" content="{{annonce.titre}}" />
+    <meta name="twitter:card" content="{{annonce.titre}}" />
+    <meta name="twitter:title" content="{{annonce.titre}}" />
+    <meta property="og:site_name" content="nal9ach.com" />
+    <meta name="twitter:url" content="{{app.request.uri}}" />
+    <meta property="og:url" content="{{app.request.uri}}" />
+    <meta property="og:description" content="{{annonce.texte}}"/>
+    <meta name="twitter:description" content="{{annonce.texte}}"/>
+    <meta property="fb:app_id" content="770925942943303"/>
+    <meta property="og:type" content="website"/> 
+    <meta property="article:author" content="{{annonce.user.nom ~" "~ annonce.user.nom}}" />
+    <meta property="og:image" content="http://nal9ach.com/{{asset(annonce.getFirstPhoto)}}"/>
+    <meta name="twitter:image" content="http://nal9ach.com/{{asset(annonce.getFirstPhoto)}}"/>
+    <meta name="author" content="{{annonce.user.nom ~" "~ annonce.user.nom}}" />
+{% endblock %}
+{% block body %}
+    <div class="darker-stripe">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{{ path('accueil') }}">Accueil</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="{{ path('liste_annonce',{'region':annonce.region.id}) }}">{{ annonce.region }}</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="{{ path('liste_annonce',{'ville':annonce.ville.id}) }}">{{ annonce.ville }}</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="javascript:void(0)">{{ annonce.titre }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="push-up top-equal blocks-spacer">
+            <div class="row blocks-spacer" {% if annonce.IsAnnule %}style="opacity: 0.3;" {% endif %}>
+                <div class="span5">
+                    <div class="product-preview">
+                        <div class="picture">
+                            <img src="{{asset(annonce.getFirstPhoto)}}"id="mainPreviewImg" />
+                        </div>
+                        <div class="thumbs clearfix">
+                            {% for photo in annonce.getPhotos %}
+                                <div class="thumb active">
+                                    <a href="#mainPreviewImg"><img src="{{asset(photo)}}" style="width: 80px;height: 80px;" /></a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="span7" {% if annonce.IsAnnule %}style="background-image: url('{{ asset('img/expired.jpg') }}');background-repeat: no-repeat;" {% endif %}>
+                    {% if false %}
+                        <div class="product-title">
+                            <span style="float: right;">
+                                <a href="#" class="action">Modifier <i class="icon-pencil"></i></a>
+                                <a href="#" class="action">Supprimer <i class="icon-trash"></i></a>
+                                <a href="#" class="action">Annuler <i class="icon-ban-circle"></i></a>
+                            </span>
+                        </div>
+                    {% endif %}
+                    <div class="product-description">
+                        <div class="row">
+                            <div class="span6">
+                                <h1 class="name" style="text-align: center;"><span class="light">{{ annonce.titre }}</span></h1>
+                            </div>
+                            <div class="span6">
+                                <hr />
+                                <h4>Déscription :</h4>
+                                <p>{{ annonce.texte }}</p>
+                                <hr />
+                            </div>
+                            <div class="span3">
+                                {% if  annonce.prix!="" %}
+                                    <h5>Prix :<span class="light"> {{ annonce.prix }}</span></h5>
+                                    <hr />
+                                {% endif %}
+
+                                {% if  annonce.tel1!="" %}
+                                    <h5>Tel :<span class="light"> {{ annonce.tel1 }}{% if  annonce.tel2 !="" %} , {{ annonce.tel2 }}{% endif %}</span></h5>
+                                    <hr />
+                                {% endif %}
+
+                                {% if  annonce.email!="" %}
+                                    <h5>Email : <span class="light">{{ annonce.email }}</span></h5> 
+                                    <hr />
+                                {% endif %} 
+                            </div>
+                            <div class="span3">
+                                <h5>Région : <span class="light">{{ annonce.region }}</span></h5> 
+                                <hr />
+                                <h5>Ville : <span class="light">{{ annonce.ville }}</span></h5> 
+                                <hr />
+                                {% if  annonce.adresse!=""%}
+                                    <h5>Adresse :<span class="light"> {{ annonce.adresse }} </span></h5>
+                                    <hr />
+                                {% endif %}
+                            </div>
+                            <div class="span6">
+                                {% if annonce.IsEnregistre %}
+                                    <div class="share-item">
+                                        <div class="addthis_sharing_toolbox"></div>
+                                        {% if false %}
+                                            <div class="pull-right social-networks">
+                                                <div class="addthis_toolbox addthis_default_style ">
+
+                                                    <div class="fb-share-button" data-href="{{ app.request.getSchemeAndHttpHost() ~ app.request.getBaseURL()~app.request.getPathInfo }}" data-layout="button"></div>
+                                                    {% if false %}
+                                                        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                                                        <a class="addthis_button_tweet"></a>
+                                                        <a class="addthis_button_pinterest_pinit"></a>
+                                                        <a class="addthis_counter addthis_pill_style"></a>
+                                                    {% endif %}
+                                                </div>
+                                                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-517459541beb3977"></script>
+                                            </div>
+                                            Partager cet article avec vos amis:
+                                        {% endif %}
+                                    </div>
+                                    {% if false %}
+                                        <div id="fb-root"></div>
+                                        <script>(function (d, s, id) {
+                                                var js, fjs = d.getElementsByTagName(s)[0];
+                                                if (d.getElementById(id))
+                                                    return;
+                                                js = d.createElement(s);
+                                                js.id = id;
+                                                js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&appId=770925942943303&version=v2.0";
+                                                fjs.parentNode.insertBefore(js, fjs);
+                                            }(document, 'script', 'facebook-jssdk'));</script>    
+                                        <div class="fb-comments" data-width="570px" data-href="{{app.request.uri}}" data-numposts="3" data-colorscheme="light"></div>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <section class="span8 single single-post">
+                    <section id="comments" class="comments-container">
+                        <h3 class="push-down-25"><span class="light">{{ annonce.commentaires.count }}</span> Commentaires</h3>
+
+                        {% for commentaire in annonce.commentaires %}
+
+                            <div class="single-comment clearfix">
+                                <div class="avatar-container">
+                                    <img src="{{asset('img/anonym.jpg')}}" alt="avatar" class="avatar" width="184" height="184" />
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-inner">
+                                        <cite class="author-name">{{ commentaire.nom }}</cite>
+                                        <div class="metadata">{{ commentaire.getDateCreation|date('d F, Y à G:i') }}</div>
+                                        <div class="metadata">Tel :{{ commentaire.tel }}</div>
+                                        <div class="comment-text">
+                                            <p>{{ commentaire.texte }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+
+
+
+                        <hr />
+                        {% if annonce.IsEnregistre %}       
+                            <h3 class="push-down-25"><span class="light">Laisser </span> un commentaire</h3>
+
+                            {{ form(form) }} 
+                        {% endif %}
+
+                    </section>
+
+                </section> <!-- /main content -->
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .action{
+            padding-right: 20px;
+        }
+    </style>           
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id))
+                return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&appId=192163827636286&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}

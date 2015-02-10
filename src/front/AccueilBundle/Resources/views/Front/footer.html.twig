@@ -1,0 +1,77 @@
+<div class="span3">
+    {% if false %}
+        <h2 class="pacifico">{{ footer.titre }} &nbsp; <img src="{{ asset('template/images/webmarket.png')}}"  class="align-baseline" /></h2>
+        <p>{{ footer.texte }}</p>
+    {% endif %}
+    <div class="main-titles lined">
+        <h3 class="title">Google +</h3>
+    </div>
+    <div>
+        <div class="fill-iframe">
+            <script src="https://apis.google.com/js/platform.js" async defer>
+                {
+                    lang: 'fr'
+                }
+            </script>
+            <div class="g-page" data-width="273" data-href="https://plus.google.com/101650575489308897639" data-theme="dark" data-layout="landscape" data-showcoverphoto="false" data-rel="publisher"></div>
+        </div>
+    </div>
+</div>
+<div class="span3">
+    <div class="main-titles lined">
+        <h3 class="title">Twitter</h3>
+    </div>
+    <div>
+        <div class="fill-iframe">
+            <a class="twitter-timeline"  href="https://twitter.com/NetmarketingTN" data-widget-id="553104841187540992">Tweets de @NetmarketingTN</a>
+            <script>!function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + "://platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");</script>
+
+        </div>
+    </div>
+</div>
+<div class="span3">
+    <div class="main-titles lined">
+        <h3 class="title">Facebook</h3>
+    </div>
+    <div class="bordered">
+        <div class="fill-iframe">
+            <div class="fb-like-box" data-href="https://www.facebook.com/Netmarketingpageofficielle" data-width="292" data-height="265" data-colorscheme="dark" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+        </div>
+    </div>
+</div>
+<div class="span3">
+    <div class="main-titles lined">
+        <h3 class="title">{{ footer.titre2 }}</h3>
+    </div>
+    <p>{{ footer.text2 }}</p>
+    <div id="mc_embed_signup">
+        <form action="{{ path('newslettre') }}" method="post" class="validate form form-inline" />
+        <div class="mc-field-group">
+            {{ form_widget(form._token) }}  
+            {{ form_widget(form.email, { 'attr': {'class': 'SmallWidth'} }) }}	
+            <input type="submit" value="Ok" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary" />
+        </div>
+        <div id="mce-responses" class="clear">
+            <div class="response" id="mce-error-response" style="display:none"></div>
+            <div class="response" id="mce-success-response" style="display:none"></div>
+        </div>
+
+        </form>
+    </div>
+</div>
+</div>
+
+<style>
+    .SmallWidth
+    {
+        width: 200px;
+    }
+</style>

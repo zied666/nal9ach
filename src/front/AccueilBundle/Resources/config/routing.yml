@@ -1,0 +1,15 @@
+accueil:
+    path:     /
+    defaults: { _controller: frontAccueilBundle:Default:index }
+contact:
+    path:     /contact
+    defaults: { _controller: frontAccueilBundle:Default:contact }
+quisommesnous:
+    path:     /quisommesnous
+    defaults: { _controller: frontAccueilBundle:Default:quisommesnous }
+monprofile:
+    path:     /monprofile
+    defaults: { _controller: frontAccueilBundle:Default:profile }
+newslettre:
+    path:     /newslettre
+    defaults: { _controller: frontAccueilBundle:Front:newslettre }

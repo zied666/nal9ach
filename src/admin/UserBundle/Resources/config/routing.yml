@@ -1,0 +1,24 @@
+addUser:
+    path:     /ajout
+    defaults: { _controller: adminUserBundle:Default:ajout }
+
+deleteUser:
+    path:     /delete/{id}
+    defaults: { _controller: adminUserBundle:Default:delete }
+    
+editUser:
+    path:     /edit/{id}
+    defaults: { _controller: adminUserBundle:Default:edit }
+    
+etatUser:
+    path:     /etat/{id}
+    defaults: { _controller: adminUserBundle:Default:etat }    
+    
+    
+listeUser:
+    path:     /liste
+    defaults: { _controller: adminUserBundle:Default:liste }
+    
+otherUser:
+    path:     /utilisateur
+    defaults: { _controller: adminUserBundle:Default:other }

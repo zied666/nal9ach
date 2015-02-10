@@ -1,0 +1,41 @@
+ajoutannonce:
+    path:     /ajout
+    defaults: { _controller: frontAnnonceBundle:Annonce:ajout }
+listecommentaires:
+    path:     /liste_commentaires
+    defaults: { _controller: frontAnnonceBundle:Annonce:commentaires }
+annonce_ville:
+    path:     /annonce_ville
+    defaults: { _controller: frontAnnonceBundle:Annonce:ajax }
+annonce_liste:
+    path:     /mes_annonce
+    defaults: { _controller: frontAnnonceBundle:Annonce:liste }
+reactiver_annonce:
+    path:     /reactiver_annonce/{id}
+    defaults: { _controller: frontAnnonceBundle:Annonce:reactiver }
+annuler_annonce:
+    path:     /annuler_annonce/{id}
+    defaults: { _controller: frontAnnonceBundle:Annonce:annuler }
+edit_annonce:
+    path:     /editer_annonce/{id}
+    defaults: { _controller: frontAnnonceBundle:Annonce:editer }
+
+deletephoto1:
+    path:     /deletephoto1/{id}
+    defaults: { _controller: frontAnnonceBundle:Annonce:delete1 }
+deletephoto2:
+    path:     /deletephoto2/{id}
+    defaults: { _controller: frontAnnonceBundle:Annonce:delete2 }
+deletephoto3:
+    path:     /deletephoto3/{id}
+    defaults: { _controller: frontAnnonceBundle:Annonce:delete3 }
+deletephoto4:
+    path:     /deletephoto4/{id}
+    defaults: { _controller: frontAnnonceBundle:Annonce:delete4 }
+
+deletecomment:
+    path:     /deletecomment/{id}
+    defaults: { _controller: frontAnnonceBundle:Annonce:deletecomment }
+luscomment:
+    path:     /luscomment/{id}
+    defaults: { _controller: frontAnnonceBundle:Annonce:luscomment }

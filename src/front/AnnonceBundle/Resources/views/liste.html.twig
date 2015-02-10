@@ -1,0 +1,103 @@
+{% extends ":front:base.html.twig" %}
+{% block title %}Mes annonces{% endblock %}
+{% block body %}
+    <div class="darker-stripe">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="{{ path('accueil') }}">Accueil</a>
+                        </li>
+                        <li><span class="icon-chevron-right"></span></li>
+                        <li>
+                            <a href="javascript:void(0)">Mes annonces</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="push-up top-equal blocks-spacer-last">
+            <div class="row">
+                <div class="span12">
+                    <div class="title-area">
+                        <h1 class="inline"><span class="light">Mes  </span>annonces</h1>
+                    </div>
+                </div>
+                <section class="span12 single single-page">
+                    <section class="contact-form-container">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Prix</th>
+                                    <th>Region</th>
+                                    <th>Ville</th>
+                                    <th>Etat</th>
+                                    <th>Date Création</th>
+                                    <th>Date Modification</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for annonce in annonces %}
+                                    <tr>
+                                        <td>{{ annonce.titre }}</td>
+                                        <td>{{ annonce.prix }}</td>
+                                        <td>{{ annonce.region }}</td>
+                                        <td>{{ annonce.ville }}</td>
+                                        <td>{{ annonce.ShowEtat }}</td>
+                                        <td>{{ annonce.dateCreation|date('d/m/Y') }}</td>
+                                        <td>{{ annonce.dateModification|date('d/m/Y') }}</td>
+                                        <td>
+                                            <a href="{{ path('edit_annonce',{'id':annonce.id}) }}" title="Modifier"><i class="icon-pencil"></i></a>
+                                            <a href="{{ path('front_service_homepage',{'titre':annonce.GetUrl,'id':annonce.id}) }}" title="Consulter"><i class="icon-eye-open"></i></a>
+                                            {% if annonce.IsEnregistre %}
+                                                <a href="{{ path('annuler_annonce',{'id':annonce.id}) }}" onclick="javascript:return(confirm('Etes-vous certain de vouloir annuler cette annonce ?'))" title="Annuler"><i class=" icon-ban-circle"></i></a>
+                                            {% else %}
+                                                <a href="{{ path('reactiver_annonce',{'id':annonce.id}) }}" onclick="javascript:return(confirm('Etes-vous certain de vouloir Réactiver cette annonce ?'))" title="Réactiver "><i class="  icon-refresh "></i></a>
+											{% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                        </table>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $(".Region").change(function () {
+                $(".Ville").empty();
+                $(".Ville").append('<option value="">Loading...</option>');
+                $(".Ville").trigger("liszt:updated");
+                var id = $(this).val();
+                $.ajax({
+                    url: '{{ path("annonce_ville") }}',
+                    type: 'POST',
+                    data: 'id=' + id,
+                    dataType: 'json',
+                    success: function (data) {
+                        $(".Ville").empty();
+                        $.each(data, function (index, value) {
+                            $(".Ville").append('<option value="' + index + '">' + value + '</option>');
+                            $(".Ville").trigger("liszt:updated");
+                        });
+                    }
+                });
+
+            })
+
+        })
+    </script>        
+    
+    <style>
+        td,th{
+            text-align: center !important;
+        }
+    </style>
+{% endblock %}

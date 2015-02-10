@@ -1,0 +1,3 @@
+{% for partenaire in partenaires %}
+    <img src="{{ asset(partenaire.getUploadDir~'/'~partenaire.logo) }}" alt=" {{ partenaire.libelle }}" width="150px" height="104px" />
+{% endfor %}

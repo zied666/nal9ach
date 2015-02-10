@@ -1,0 +1,114 @@
+<?php
+
+namespace admin\LocBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Region
+ *
+ * @ORM\Table()
+ * @ORM\Table(name="ser_region")
+ * @ORM\Entity(repositoryClass="admin\LocBundle\Entity\RegionRepository")
+ */
+class Region
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=50)
+     */
+    private $libelle;
+
+    /**
+     * @ORM\OneToMany(targetEntity="admin\LocBundle\Entity\Ville", mappedBy="region")
+     */
+    private $villes;
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     * @return Region
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string 
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->villes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add villes
+     *
+     * @param \admin\LocBundle\Entity\Ville $villes
+     * @return Region
+     */
+    public function addVille(\admin\LocBundle\Entity\Ville $villes)
+    {
+        $this->villes[] = $villes;
+
+        return $this;
+    }
+
+    /**
+     * Remove villes
+     *
+     * @param \admin\LocBundle\Entity\Ville $villes
+     */
+    public function removeVille(\admin\LocBundle\Entity\Ville $villes)
+    {
+        $this->villes->removeElement($villes);
+    }
+
+    /**
+     * Get villes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVilles()
+    {
+        return $this->villes;
+    }
+    
+    
+    public function __toString() {
+        return $this->libelle;
+    }
+}
