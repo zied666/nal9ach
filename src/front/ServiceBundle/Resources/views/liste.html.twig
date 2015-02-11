@@ -58,7 +58,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-										<th></th>
+                                        <th></th>
                                         <th>Région</th>
                                         <th>Ville</th>
                                         <th>Titre</th>
@@ -67,9 +67,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% if count==0 %}
+                                        <tr  class="product clickableRow">
+                                            <td colspan="6" >Pas d'annonce disponible</td>
+                                        </tr>
+                                    {% endif %}
                                     {% for annonce in annonces %}
                                         <tr  class="product clickableRow"  href="{{ path('front_service_homepage',{'titre':annonce.GetUrl,'id':annonce.id}) }}">
-											<td>{% if annonce.getFirstPhoto!="img/nopic.jpg" %}<li class="icon-camera"></li>{% endif %}</td>
+                                            <td>{% if annonce.getFirstPhoto!="img/nopic.jpg" %}<li class="icon-camera"></li>{% endif %}</td>
                                             <td>{{ annonce.region }}</td>
                                             <td>{{ annonce.ville }}</td>
                                             <td><strong>{{ annonce.titre|title|slice(0, 30)   }}</strong></td>
@@ -86,20 +91,20 @@
                         <ul>
                             {% if page==1 %}
                                 <li><a href="javascript:void(0)" class="btn disabled"><span class="icon-chevron-left"></span></a></li>
-                            {% else %}
+                                    {% else %}
                                 <li><a href="{{ path('Filtre',{'page':page-1,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}" class="btn  btn-primary "><span class="icon-chevron-left"></span></a></li>
-                            {% endif %}
+                                    {% endif %}
 
                             {% for i in 1..nbrpage %}
                                 <li {% if i==page %}class="active"{% endif %}><a href="{{ path('Filtre',{'page':i,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}">{{ i }}</a></li>
-                            {% endfor %}
+                                {% endfor %}
 
 
                             {% if page==nbrpage %}
                                 <li><a href="javascript:void(0)" class="btn disabled"><span class="icon-chevron-right"></span></a></li>
-                            {% else %}
+                                    {% else %}
                                 <li><a href="{{ path('Filtre',{'page':page+1,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}" class="btn btn-primary   btn-primary"><span class="icon-chevron-right"></span></a></li>
-                            {% endif %}
+                                    {% endif %}
 
                         </ul>
                     </div>
