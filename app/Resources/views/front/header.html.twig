@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="span4">
                     <div class="higher-line">
-                            Bienvenue, 
+                        Bienvenue, 
                         {% if app.user  and  is_granted("ROLE_USER") %}
                             <strong>{{app.user.nom }} {{app.user.prenom }}</strong>, 
                             <a href="{{ path('fos_user_security_logout') }}" role="button">Déconnexion</a>
@@ -47,26 +47,27 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="span5">
+            <div class="span4">
                 <a class="brand" href="{{ path('accueil') }}">
                     {{ render(controller('adminPageBundle:Front:logo')) }}
                 </a>
             </div>
 
-            <div class="span5">
+            <div class="span8">
                 <a href="{{ path('ajoutannonce') }}" >
                     {{ render(controller('frontAccueilBundle:Front:photoheader')) }}
-                    {#<img src="{{ asset('img/ann.gif') }}" >#}
                 </a>
             </div>
 
-            <div class="span2">
-                <div class="top-right">
-                    <div class="icons">
-                        {{ render(controller('frontAccueilBundle:Front:social')) }}
+            {% if false %}   
+                <div class="span2">
+                    <div class="top-right">
+                        <div class="icons">
+                            {{ render(controller('frontAccueilBundle:Front:social')) }}
+                        </div>
                     </div>
                 </div>
-            </div> <!-- /social icons -->
+            {% endif %}
         </div>
     </div>
 </header>
