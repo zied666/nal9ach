@@ -11,7 +11,7 @@
                     <a href="{{ path('liste_annonce',{'categorie':categorie.id}) }}">  <h5 style="text-align: left;"><img src="{{ asset('img/accueil'~loop.index~'.png') }}" style="margin-right: 30px;width: 45px;height: 45px;" > {{ categorie }} </h5></a><hr style="margin: 0;">
                         {% endfor %} 
             </div>
-            <div class="span4">{% include ':front:map.html.twig' %}</div>
+            <div class="span4 HideResp">{% include ':front:map.html.twig' %}</div>
             <div class="span4 MMidle" style="">
                 <div class="sidebar-item opening-time" id="opening_time-4" style="margin-right: auto;margin-left: auto;margin-bottom: 0px;">
                     <div class="time-table">
@@ -59,6 +59,11 @@
     <style>
         .MMidle{
             padding-top: 40px
+        }
+        @media screen and (max-width: 767px) {
+            .HideResp {
+                display: none;
+            }
         }
     </style>
     {% include ':front:lastnews.html.twig' %}
