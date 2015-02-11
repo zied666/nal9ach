@@ -47,7 +47,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="span4">
+            <div class="span2">
                 <a class="brand" href="{{ path('accueil') }}">
                     {{ render(controller('adminPageBundle:Front:logo')) }}
                 </a>
@@ -59,15 +59,13 @@
                 </a>
             </div>
 
-            {% if false %}   
-                <div class="span2">
-                    <div class="top-right">
-                        <div class="icons">
-                            {{ render(controller('frontAccueilBundle:Front:social')) }}
-                        </div>
+            <div class="span2">
+                <div class="top-right">
+                    <div class="icons">
+                        {{ render(controller('frontAccueilBundle:Front:social')) }}
                     </div>
                 </div>
-            {% endif %}
+            </div>
         </div>
     </div>
 </header>
