@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c> 
    RewriteEngine on 
  
-   RewriteRule    ^$ nal9ach/web    [QSA,L] 
-   RewriteRule    (.*) nal9ach/web/$1 [QSA,L]  
+   RewriteRule    ^$ web    [L] 
+   RewriteRule    (.*) web/$1 [L] 
 </IfModule> 
