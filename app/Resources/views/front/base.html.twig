@@ -139,6 +139,14 @@
         <script src="{{ asset('js/jquery.maphilight.min.js') }}"></script>
         <script src="{{ asset('js/jquery.tooltip.min.js') }}"></script>
         <script>
+        $(document).ready(function(){
+            $("#RegionSelect").change(function(){
+                var val=$(this).val();
+                   document.location.href=val;
+            })
+        })
+    </script>
+        <script>
             $(document).ready(function () {
                 $('.zedx_map').maphilight({
                     fade: false,

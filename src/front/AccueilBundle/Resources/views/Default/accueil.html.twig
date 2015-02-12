@@ -25,7 +25,7 @@
             </div>
             <div class="span4 ShowResp">
                 <form action="#" class="form form-inline clearfix">
-                    <select name="" class="span12" >
+                    <select name="" class="span12" id="RegionSelect" >
                         <option value="">Choisir une région</option>
                         {% for region in regions if region.id !=36 %}
                             <option value="{{ path('liste_annonce',{'region':region.id}) }}">{{ region.libelle }}</option>
