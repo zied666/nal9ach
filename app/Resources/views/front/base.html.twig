@@ -182,6 +182,18 @@
 
             });
         </script>
+        <script>
+        $(document).ready(function (){
+            if($(window).width()<767)
+            {
+                $(".dropdown-toggle").on("click",function(e){
+                    e.preventDefault();
+                    //$(".dropdown-menu").hide();
+                    $(this).parent().children("ul").toggle();
+                });
+            }
+        })    
+        </script>
     {% block jquery %}{% endblock %}
     <script type="text/javascript">
         if (typeof jQuery == 'undefined') {

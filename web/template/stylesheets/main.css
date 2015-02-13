@@ -902,7 +902,7 @@ label { font-weight: bold; }
   .navbar .container { width: 724px; }
   .navbar .navbar-form { padding: 0; margin: 0 0 30px; }
   .navbar .navbar-form input[type="text"] { width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; height: 36px; }
-  .navbar .nav > li .dropdown-menu { display: block !important; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; margin: 5px 20px; }
+  .navbar .nav > li .dropdown-menu { display: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; margin: 5px 20px; }
   .navbar .nav > li > a { border-bottom: 1px solid #e0e0e0; }
   .navbar .nav > li > a:after { display: none; }
   .navbar .dropdown { margin-bottom: 10px; border-bottom: 3px double #e0e0e0; }

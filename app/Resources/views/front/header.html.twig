@@ -33,10 +33,10 @@
                         </div>
                     {% else %}
                         <div class="SocialButton">
-                            <a class="btn btn-facebook" href="{{ path('facebook_log') }}" >
+                            <a class="btn btn-facebook FullWidtgResp" href="{{ path('facebook_log') }}" >
                                 <span class="icon-facebook " style="color:white"></span> | Se connecter via Facebook
                             </a>
-                            <a class="btn btn-google-plus g-signin" href="{{ path('google_log') }}">
+                            <a class="btn btn-google-plus g-signin FullWidtgResp" href="{{ path('google_log') }}">
                                 <span class=" icon-google-plus " style="color:white"></span> | Se connecter via Google
                             </a>
                         </div>
@@ -164,5 +164,16 @@
         text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
         background-image: linear-gradient(to bottom, #DD4B39, #C53727);
         opacity: 0.7;
+    }
+    @media screen and (max-width: 767px) 
+    {
+        .FullWidtgResp
+        {
+            width: 95%;
+            margin-top: 5px;
+        }
+        .navbar .dropdown {
+            border:0 !important;
+        }
     }
 </style>
