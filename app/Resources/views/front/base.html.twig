@@ -186,9 +186,9 @@
         $(document).ready(function (){
             if($(window).width()<767)
             {
-                $(".dropdown-toggle").on("click",function(e){
+                $(".dropdown-toggle2").on("click",function(e){
                     e.preventDefault();
-                    //$(".dropdown-menu").hide();
+                   $(".dropdown-menu").hide();
                     $(this).parent().children("ul").toggle();
                 });
             }

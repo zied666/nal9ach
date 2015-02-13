@@ -1,6 +1,6 @@
 {% for categorie in categories %}
     <li class="dropdown">
-        <a href="{{ path('liste_annonce',{'categorie':categorie.id}) }}" class="dropdown-toggle"> {{ categorie.libelle }} <b class="caret"></b> </a>
+        <a href="{{ path('liste_annonce',{'categorie':categorie.id}) }}" class="dropdown-toggle2"> {{ categorie.libelle }} <b class="caret"></b> </a>
         <ul class="dropdown-menu">
             {% for service in categorie.services %}
                 <li><a href="{{ path('liste_annonce',{'categorie':service.categorie.id,'service':service.id}) }}">{{ service.libelle }}</a></li>
