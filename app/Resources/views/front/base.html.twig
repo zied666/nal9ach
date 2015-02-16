@@ -19,7 +19,7 @@
             <meta name="author" content="nal9ach.com" />
             <meta property="og:image" content="http://nal9ach.com/web/uploads/085156-Capture.PNG"/>
             <meta name=”twitter:image” content="http://nal9ach.com/web/uploads/085156-Capture.PNG"/>
-            
+
             <meta name=”twitter:card” content=”www.nal9ach.com”>
         {% endblock %}
         <meta charset="utf-8" />
@@ -42,6 +42,26 @@
         <!-- Modernizr -->
         <script src="{{ asset('template/js/modernizr.custom.56918.js')}}"></script>    
         <!-- Fav and touch icons -->
+
+        <style>
+            .MMidle{
+                padding-top: 40px
+            }
+            .ShowResp
+            {
+                display: none
+            }
+            @media screen and (max-width: 767px) {
+                .HideResp {
+                    display: none;
+                }
+                .ShowResp
+                {
+                    display: block;
+                    margin-top: 16px;
+                }
+            }
+        </style>
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch/144.png')}}" />
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/apple-touch/114.png')}}" />
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch/72.png')}}" />
@@ -130,7 +150,7 @@
         <!--  = FB =  -->
 
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52ecfa390c360c57" async="async"></script>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52ecfa390c360c57" async="async"></script>
 
 
 
@@ -139,13 +159,13 @@
         <script src="{{ asset('js/jquery.maphilight.min.js') }}"></script>
         <script src="{{ asset('js/jquery.tooltip.min.js') }}"></script>
         <script>
-        $(document).ready(function(){
-            $("#RegionSelect").change(function(){
-                var val=$(this).val();
-                   document.location.href=val;
+            $(document).ready(function () {
+                $("#RegionSelect").change(function () {
+                    var val = $(this).val();
+                    document.location.href = val;
+                })
             })
-        })
-    </script>
+        </script>
         <script>
             $(document).ready(function () {
                 $('.zedx_map').maphilight({
@@ -183,16 +203,16 @@
             });
         </script>
         <script>
-        $(document).ready(function (){
-            if($(window).width()<767)
-            {
-                $(".dropdown-toggle2").on("click",function(e){
-                    e.preventDefault();
-                   $(".dropdown-menu").hide();
-                    $(this).parent().children("ul").toggle();
-                });
-            }
-        })    
+            $(document).ready(function () {
+                if ($(window).width() < 767)
+                {
+                    $(".dropdown-toggle2").on("click", function (e) {
+                        e.preventDefault();
+                        $(".dropdown-menu").hide();
+                        $(this).parent().children("ul").toggle();
+                    });
+                }
+            })
         </script>
     {% block jquery %}{% endblock %}
     <script type="text/javascript">
