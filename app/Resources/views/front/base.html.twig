@@ -4,15 +4,6 @@
 <!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        {% if app.request.get('_route') == 'accueil' %}
-            <script>
-                if(window.innerWidth<767)
-                {
-                    document.location.href = "{{ path('accueil2') }}";
-
-                }
-            </script>
-        {% endif %}
         {% block meta %}
             <meta property="og:title" content="www.nal9ach.com" />
             <meta name=”twitter:title” content="www.nal9ach.com" />
