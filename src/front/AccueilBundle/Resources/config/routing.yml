@@ -1,6 +1,10 @@
 accueil:
     path:     /
     defaults: { _controller: frontAccueilBundle:Default:index }
+
+accueil2:
+    path:     /mobile
+    defaults: { _controller: frontAccueilBundle:Default:index2 }
 contact:
     path:     /contact
     defaults: { _controller: frontAccueilBundle:Default:contact }

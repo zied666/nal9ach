@@ -1,0 +1,46 @@
+{% extends ':front:base.html.twig' %}
+{% block title %}Nal9ach{% endblock %}
+{% block body %}
+    <div class="container" >
+        <div class="row">
+            <div class="span6">
+                <form action="#" class="form form-inline clearfix">
+                    <select name="" class="span12" id="RegionSelect" >
+                        <option value="">Choisir une région</option>
+                        {% for region in regions if region.id !=36 %}
+                            <option value="{{ path('liste_annonce',{'region':region.id}) }}">{{ region.libelle }}</option>
+                        {% endfor %}    
+                        {% for region in regions2 %}
+                            <option value="{{ path('liste_annonce',{'region':region.id}) }}">{{ region.libelle }}</option>
+                        {% endfor %}    
+                    </select>
+                </form>
+            </div>  
+            <div class="span6" style="text-align: center;margin-bottom: 20px;">
+                {% for categorie in categories %}
+                    <a href="{{ path('liste_annonce',{'categorie':categorie.id}) }}">  <h5 style="text-align: left;"><img src="{{ asset('img/accueil'~loop.index~'.png') }}" style="margin-right: 30px;width: 45px;height: 45px;" > {{ categorie }} </h5></a><hr style="margin: 0;">
+                        {% endfor %} 
+            </div>              
+        </div>
+    </div> <!-- /container -->
+    <style>
+        .MMidle{
+            padding-top: 40px
+        }
+        .ShowResp
+        {
+            display: none
+        }
+        @media screen and (max-width: 767px) {
+            .HideResp {
+                display: none;
+            }
+            .ShowResp
+            {
+                display: block;
+                margin-top: 16px;
+            }
+        }
+    </style>
+    {% include ':front:partenaire.html.twig' %}
+{% endblock %}

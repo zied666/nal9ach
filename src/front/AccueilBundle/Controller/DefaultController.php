@@ -24,6 +24,19 @@ class DefaultController extends Controller
         return $this->render('frontAccueilBundle:Default:accueil.html.twig', array('marketing' => $marketing, 'accueil' => $accueil,'GrandTunis' => $GrandTunis , 'regions' => $regions, 'regions2' => $regions2,'categories'=>$categories));
     }
 
+    public function index2Action() 
+    {
+        $em = $this->getDoctrine()->getManager();
+        $accueil = new Accueil();
+        $categories= $em->getRepository("adminRefBundle:Categorie")->findAll();
+        $marketing = $em->getRepository("adminPageBundle:Marketing")->find(1);
+        $accueil = $em->getRepository('adminPageBundle:Accueil')->find(1);
+        $GrandTunis = $em->getRepository("adminLocBundle:Region")->find(36);
+        $regions = $em->getRepository("adminLocBundle:Region")->findBy(array(), array('libelle' => 'ASC'), 11);
+        $regions2 = $em->getRepository("adminLocBundle:Region")->findBy(array(), array('libelle' => 'ASC'), 10, 11);
+        return $this->render('frontAccueilBundle:Default:accueil2.html.twig', array('marketing' => $marketing, 'accueil' => $accueil,'GrandTunis' => $GrandTunis , 'regions' => $regions, 'regions2' => $regions2,'categories'=>$categories));
+    }
+
     public function profileAction()
     {
         $em = $this->getDoctrine()->getManager();
