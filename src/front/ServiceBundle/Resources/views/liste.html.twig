@@ -59,11 +59,11 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Région</th>
+                                        <th class="HideResp">Région</th>
                                         <th>Ville</th>
                                         <th>Titre</th>
                                         <th>Prix</th>
-                                        <th>Date</th>
+                                        <th class="HideResp">Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,11 +75,11 @@
                                     {% for annonce in annonces %}
                                         <tr  class="product clickableRow"  href="{{ path('front_service_homepage',{'titre':annonce.GetUrl,'id':annonce.id}) }}">
                                             <td>{% if annonce.getFirstPhoto!="img/nopic.jpg" %}<li class="icon-camera"></li>{% endif %}</td>
-                                            <td>{{ annonce.region }}</td>
+                                            <td class="HideResp">{{ annonce.region }}</td>
                                             <td>{{ annonce.ville }}</td>
                                             <td><strong>{{ annonce.titre|title|slice(0, 30)   }}</strong></td>
                                             <td>{{ annonce.prix|slice(0, 20)  }}</td>
-                                            <td>{{ annonce.dateCreation|date('d/m/Y') }}</td>
+                                            <td class="HideResp">{{ annonce.dateCreation|date('d/m/Y') }}</td>
                                         </tr>
                                     {% endfor %}
 
