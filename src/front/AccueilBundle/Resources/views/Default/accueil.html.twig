@@ -6,13 +6,13 @@
             <div class="span12">
                 <h5 style="text-align: center">{{ accueil.text2 }}</h5>
             </div>
-            <div class="span4 MMidle" style="text-align: center;">
+            <div class="span4" style="text-align: center;">
                 {% for categorie in categories %}
                     <a href="{{ path('liste_annonce',{'categorie':categorie.id}) }}">  <h5 style="text-align: left;"><img src="{{ asset('img/accueil'~loop.index~'.png') }}" style="margin-right: 30px;width: 45px;height: 45px;" > {{ categorie }} </h5></a><hr style="margin: 0;">
                         {% endfor %} 
             </div>
-            <div class="span4 HideResp">{% include ':front:map.html.twig' %}</div>
-            <div class="span4 MMidle HideResp">
+            <div class="span4">{% include ':front:map.html.twig' %}</div>
+            <div class="span4">
                 <div class="sidebar-item opening-time" id="opening_time-4" style="margin-right: auto;margin-left: auto;margin-bottom: 0px;">
                     <div class="time-table">
                         <dl class="week-day" style="padding: 7px;">
@@ -22,21 +22,8 @@
                         </dl>
                     </div>
                 </div>
-            </div>
-            <div class="span4 ShowResp">
-                <form action="#" class="form form-inline clearfix">
-                    <select name="" class="span12" id="RegionSelect" >
-                        <option value="">Choisir une région</option>
-                        {% for region in regions if region.id !=36 %}
-                            <option value="{{ path('liste_annonce',{'region':region.id}) }}">{{ region.libelle }}</option>
-                        {% endfor %}    
-                        {% for region in regions2 %}
-                            <option value="{{ path('liste_annonce',{'region':region.id}) }}">{{ region.libelle }}</option>
-                        {% endfor %}    
-                    </select>
-                </form>
-            </div>                
-            <div class="span2 HideResp">
+            </div>             
+            <div class="span2">
                 <div class="sidebar-item opening-time" id="opening_time-4" style="margin-right: auto;margin-left: auto;">
                     <div class="time-table">
                         {% set i=0 %}
@@ -51,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="span2 HideResp">
+            <div class="span2">
                 <div class="sidebar-item opening-time" id="opening_time-4">
                     <div class="time-table">
                         {% set i=0 %}
@@ -68,25 +55,6 @@
             </div>
         </div>
     </div> <!-- /container -->
-    <style>
-        .MMidle{
-            padding-top: 40px
-        }
-        .ShowResp
-        {
-            display: none
-        }
-        @media screen and (max-width: 767px) {
-            .HideResp {
-                display: none;
-            }
-            .ShowResp
-            {
-                display: block;
-                margin-top: 16px;
-            }
-        }
-    </style>
     {% include ':front:lastnews.html.twig' %}
     {% include ':front:partenaire.html.twig' %}
 {% endblock %}
