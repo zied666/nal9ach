@@ -35,9 +35,11 @@
                     <tr>
                         <td>{{ user.nom }} {{ user.prenom }} </td>
                         {% if user.getFacebookId!="" %}
-                            <td  colspan="2" style="text-align:center;background-color:#46629E;color:white;vertical-align: middle;" >Facebook</td>
+                            <td></td>
+                            <td style="text-align:center;color:#46629E;vertical-align: middle;">Facebook</td>
                         {% elseif user.getGoogleId!="" %}
-                            <td colspan="2" style="text-align:center;background-color:#D73D32;color:white;vertical-align: middle;" >Google +</td>
+                            <td></td>
+                            <td style="text-align:center;color:#D73D32;vertical-align: middle;">Google plus</td>
                         {% else %}
                             <td>{{ user.username }}</td>
                             <td>{{ user.email }}</td>
