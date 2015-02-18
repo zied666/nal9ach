@@ -22,3 +22,7 @@ listeUser:
 otherUser:
     path:     /utilisateur
     defaults: { _controller: adminUserBundle:Default:other }
+
+newsletters:
+    path:     /newsletters
+    defaults: { _controller: adminUserBundle:NewsLettres:liste }
