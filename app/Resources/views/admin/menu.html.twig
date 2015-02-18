@@ -20,7 +20,7 @@
                                                         <li class="{% if app.request.getPathInfo|split('/liste')|length > 1  %}active{% endif %}"><a href="{{ path("listeUser") }}">Administrateurs</a></li>
                                                         <li class="{% if app.request.getPathInfo|split('/utilisateur')|length > 1  %}active{% endif %}"><a href="{{ path("otherUser") }}">Utilisateurs</a></li>
                                                         <li class="{% if app.request.getPathInfo|split('/ajout')|length > 1  %}active{% endif %}"><a href="{{ path("addUser") }}">Ajouter un administrateur</a></li>
-                                                        <li class="{% if app.request.getPathInfo|split('/newsletters')|length > 1  %}active{% endif %}"><a href="{{ path("newsletters") }}">News Lettres</a></li>
+                                                        <li class="{% if app.request.getPathInfo|split('/newsletters')|length > 1  %}active{% endif %}"><a href="{{ path("newsletters") }}">NewsLetters</a></li>
                                                     </ul>
                                             </div>
                                     </div>

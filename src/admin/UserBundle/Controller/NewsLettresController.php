@@ -37,8 +37,8 @@ class NewsLettresController extends Controller
                         ->setFrom($contact->getEmail())
                         ->setContentType("text/html")
                         ->setBody($Text);
-                $this->get('mailer')->send($message);
-                $i++;
+                if($this->get('mailer')->send($message))
+                    $i++;
             }
             $session->getFlashBag()->add('alert-success', "Vous avez envoyer $i mails avec succées");
             return $this->redirect($this->generateUrl("NewsLettersSend"));
