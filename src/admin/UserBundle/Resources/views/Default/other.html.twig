@@ -36,10 +36,10 @@
                         <td>{{ user.nom }} {{ user.prenom }} </td>
                         {% if user.getFacebookId!="" %}
                             <td></td>
-                            <td style="text-align:center;color:#46629E;vertical-align: middle;">Facebook</td>
+                            <td style="text-align:center;color:#46629E;vertical-align: middle;">--- Facebook ---</td>
                         {% elseif user.getGoogleId!="" %}
                             <td></td>
-                            <td style="text-align:center;color:#D73D32;vertical-align: middle;">Google plus</td>
+                            <td style="text-align:center;color:#D73D32;vertical-align: middle;">--- Google plus ---</td>
                         {% else %}
                             <td>{{ user.username }}</td>
                             <td>{{ user.email }}</td>
