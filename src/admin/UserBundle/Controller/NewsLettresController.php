@@ -45,5 +45,18 @@ class NewsLettresController extends Controller
         }
         return $this->render('adminUserBundle:NewsLettres:send.html.twig');
     }
-
+    
+    public function removeAction(Newslettre $newslettre)
+    {
+        $em =$this->getDoctrine()->getManager();
+        $session =$this->getRequest()->getSession();
+        if($newslettre)
+        {
+            $em->remove($newslettre);
+            $em->flush();
+        }
+            $session->getFlashBag()->add('alert-success', "Le mail a été supprimé avec succées");
+            return $this->redirect($this->generateUrl("newsletters"));
+    }
+    
 }

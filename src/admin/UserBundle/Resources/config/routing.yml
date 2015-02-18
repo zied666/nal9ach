@@ -29,3 +29,7 @@ newsletters:
 NewsLettersSend:
     path:     /newsletters/send
     defaults: { _controller: adminUserBundle:NewsLettres:send }
+
+NewsLettersRemove:
+    path:     /newsletters/Remove/{id}
+    defaults: { _controller: adminUserBundle:NewsLettres:remove }
