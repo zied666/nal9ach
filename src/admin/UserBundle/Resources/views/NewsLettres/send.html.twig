@@ -1,0 +1,31 @@
+{% extends ':admin:base.html.twig' %}
+{% block title %}Envoyer un mail{% endblock %}
+
+{% block body %}
+    <nav>
+        <div id="jCrumbs" class="breadCrumb module">
+
+            <ul>{% block sitmap %}
+                <li>    
+                    <a href="{{ path("admin_general_homepage") }}"><i class="icon-home"></i></a>
+                </li>
+                <li>    
+                    <a href="#">Envoyer un mail au s'abonner</a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+</nav>    
+
+        <form action="sample_posteddata.php" method="post">
+            <p>
+                <textarea required class="ckeditor" id="editor1" name="editor1" cols="100" rows="10"></textarea>
+            </p>
+            <input value="Envoyer" type="submit">
+        </form>
+
+{% endblock %}
+    {% block script %}
+        {{ parent() }}
+        <script src="{{ asset('js/ckeditor.js') }}"></script>
+    {% endblock %}

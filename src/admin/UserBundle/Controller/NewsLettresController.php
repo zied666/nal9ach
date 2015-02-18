@@ -15,4 +15,10 @@ class NewsLettresController extends Controller
         $newsletters=$em->getRepository("frontAnnonceBundle:Newslettre")->findAll();
         return $this->render('adminUserBundle:NewsLettres:liste.html.twig',array('newsletters'=>$newsletters));
     }
+    
+    public function sendAction()
+    {
+        $em=$this->getDoctrine()->getManager();
+        return $this->render('adminUserBundle:NewsLettres:send.html.twig');
+    }
 }

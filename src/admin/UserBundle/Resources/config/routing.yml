@@ -14,7 +14,6 @@ etatUser:
     path:     /etat/{id}
     defaults: { _controller: adminUserBundle:Default:etat }    
     
-    
 listeUser:
     path:     /liste
     defaults: { _controller: adminUserBundle:Default:liste }
@@ -26,3 +25,7 @@ otherUser:
 newsletters:
     path:     /newsletters
     defaults: { _controller: adminUserBundle:NewsLettres:liste }
+
+NewsLettersSend:
+    path:     /newsletters/send
+    defaults: { _controller: adminUserBundle:NewsLettres:send }
