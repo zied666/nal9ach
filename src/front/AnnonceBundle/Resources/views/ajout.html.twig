@@ -30,42 +30,34 @@
                     <section class="contact-form-container">
                         <form id="commentform" method="post" action="{{ path('ajoutannonce') }}" class="form form-inline form-contact" enctype="multipart/form-data">
                             {{ form_widget(form._token) }}    
+                            <p class="span4">
+                                {{ form_widget(form.type) }}
+                            </p>
                             <p class=" span4">
-                                {{ form_widget(form.titre) }}
-                                <label for="author">Titre<span class="red-clr bold">*</span></label>
+                                {{ form_widget(form.titre, {'attr': {'placeholder': 'Titre'}}) }}	
                             </p>
                             <p class="span4">
-                                {{ form_widget(form.prix) }}
-                                <label for="author">prix</label>
+                                {{ form_widget(form.prix, {'attr': {'placeholder': 'Prix'}}) }}	
                             </p>
                             <p class="span4">
-                                {{ form_widget(form.tel1) }}
-                                <label for="author">Téléphone 1<span class="red-clr bold">*</span></label>
+                                {{ form_widget(form.adresse, {'attr': {'placeholder': 'Adresse'}}) }}	
                             </p>
                             <p class="span4">
-                                {{ form_widget(form.tel2) }}
-                                <label for="author">Téléphone 2</label>
-                            </p>
-
-                            <p class="span4">
-                                {{ form_widget(form.adresse) }}
-                                <label for="author">Adresse<span class="red-clr bold">*</span></label>
+                                {{ form_widget(form.tel1, {'attr': {'placeholder': 'Téléphone 1'}}) }}	
                             </p>
                             <p class="span4">
-                                {{ form_widget(form.email) }}
-                                <label for="author">Email</label>
+                                {{ form_widget(form.tel2, {'attr': {'placeholder': 'Téléphone 2'}}) }}	
                             </p>
 
                             <p class="span4">
-                                {{ form_widget(form.region, {'attr': {'class': 'Region'}}) }}
-                                <label for="author">Région<span class="red-clr bold">*</span></label>
+                                {{ form_widget(form.region, {'attr': {'class': 'Region','placeholder': 'Region'}}) }}
                             </p>
                             <p class="span4">
-                                {{ form_widget(form.ville, {'attr': {'class': 'Ville'}}) }}
-                                <label for="author">Ville<span class="red-clr bold">*</span></label>
+                                {{ form_widget(form.ville, {'attr': {'class': 'Ville','placeholder': 'Ville'}}) }}
                             </p>  
                             <p class="push-down-20">
-                                {{ form_widget(form.texte, {'attr': {'class': 'input-block-level','placeholder':'votre déscription ici'}}) }}
+                                {{ form_widget(form.texte, {'attr': {'class': 'input-block-level','placeholder':'Votre déscription ici','style':'height: 150px;
+margin-top: 20px;'}}) }}
                             </p>
                             <div class="span6">
                                 <h3 class="push-down-20">Catégries :</h3>
@@ -77,9 +69,9 @@
                                         <tbody>
                                             {% for ser in cat.services %}
                                                 {% if loop.index is not divisible by(2) %}<tr>{% endif %}
-                                                <td><label> <input style="margin-right: 12px;vertical-align: sub;" type="checkbox" name="services[]" value="{{ ser.id }}" >{{ ser.libelle }} </label></td>
-                                                {% if loop.index is  divisible by(2) %}</tr>{% endif %}
-                                            {% endfor %}
+                                                    <td><label> <input style="margin-right: 12px;vertical-align: sub;" type="checkbox" name="services[]" value="{{ ser.id }}" >{{ ser.libelle }} </label></td>
+                                                    {% if loop.index is  divisible by(2) %}</tr>{% endif %}
+                                                {% endfor %}
                                         </tbody>
                                     </table>
 

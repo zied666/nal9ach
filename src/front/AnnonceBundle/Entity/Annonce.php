@@ -33,6 +33,13 @@ class Annonce
     /**
      * @var string
      *
+     * @ORM\Column(name="type", type="integer", options={"default" = 1})
+     */
+    private $type;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="texte", type="text")
      */
     private $texte;
@@ -812,4 +819,43 @@ class Annonce
     {
         return $this->commentaires;
     }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return Annonce
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+    
+    /**
+     * Shows type
+     *
+     * @return Type 
+     */
+    public function showType()
+    {
+        if($this->type==1)
+            return "Offre";
+        else
+            return "Demande";
+    }
+    
+    
+    
 }

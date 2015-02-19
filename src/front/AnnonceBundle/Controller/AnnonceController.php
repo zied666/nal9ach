@@ -18,6 +18,7 @@ class AnnonceController extends Controller
         $annonce = new Annonce();
         $session = $this->getRequest()->getSession();
         $user = $this->container->get('security.context')->getToken()->getUser();
+        $annonce->setEmail($user->getEmail());
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository("adminRefBundle:Categorie")->findAll();
         $form = $this->createForm(new AnnonceType(), new Annonce());
