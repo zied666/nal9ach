@@ -56,7 +56,7 @@
                 </div>
             </div>  
         </form>
-        {% if region!=0 or service!=0 or ville!=0 or search!="_" or orderby!="dateCreation" or desc!="desc"  %}
+        {% if region!=0 or type!=0 or service!=0 or ville!=0 or search!="_" or orderby!="dateCreation" or desc!="desc"  %}
             <a href="{{ path('liste_annonce') }}" class="remove-filter" id="removeFilters"><span class="icon-ban-circle"></span>Supprimer tous les filtres</a>
         {% endif %}
     </div>
