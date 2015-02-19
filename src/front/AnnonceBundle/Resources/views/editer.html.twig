@@ -30,42 +30,34 @@
                     <section class="contact-form-container">
                         <form id="commentform" method="post" action="{{ path('edit_annonce',{'id':annonce.id}) }}" class="form form-inline form-contact" enctype="multipart/form-data">
                             {{ form_widget(form._token) }}    
+                            <p class="span4">
+                                {{ form_widget(form.type) }}
+                            </p>
                             <p class=" span4">
-                                {{ form_widget(form.titre) }}
-                                <label for="author">Titre<span class="red-clr bold">*</span></label>
+                                {{ form_widget(form.titre, {'attr': {'placeholder': 'Titre'}}) }}	
                             </p>
                             <p class="span4">
-                                {{ form_widget(form.prix) }}
-                                <label for="author">prix</label>
+                                {{ form_widget(form.prix, {'attr': {'placeholder': 'Prix'}}) }}	
                             </p>
                             <p class="span4">
-                                {{ form_widget(form.tel1) }}
-                                <label for="author">Téléphone 1<span class="red-clr bold">*</span></label>
+                                {{ form_widget(form.adresse, {'attr': {'placeholder': 'Adresse'}}) }}	
                             </p>
                             <p class="span4">
-                                {{ form_widget(form.tel2) }}
-                                <label for="author">Téléphone 2</label>
-                            </p>
-
-                            <p class="span4">
-                                {{ form_widget(form.adresse) }}
-                                <label for="author">Adresse<span class="red-clr bold">*</span></label>
+                                {{ form_widget(form.tel1, {'attr': {'placeholder': 'Téléphone 1'}}) }}	
                             </p>
                             <p class="span4">
-                                {{ form_widget(form.email) }}
-                                <label for="author">Email</label>
+                                {{ form_widget(form.tel2, {'attr': {'placeholder': 'Téléphone 2'}}) }}	
                             </p>
 
                             <p class="span4">
-                                {{ form_widget(form.region, {'attr': {'class': 'Region'}}) }}
-                                <label for="author">Région<span class="red-clr bold">*</span></label>
+                                {{ form_widget(form.region, {'attr': {'class': 'Region','placeholder': 'Region'}}) }}
                             </p>
                             <p class="span4">
-                                {{ form_widget(form.ville, {'attr': {'class': 'Ville'}}) }}
-                                <label for="author">Ville<span class="red-clr bold">*</span></label>
+                                {{ form_widget(form.ville, {'attr': {'class': 'Ville','placeholder': 'Ville'}}) }}
                             </p>  
                             <p class="push-down-20">
-                                {{ form_widget(form.texte, {'attr': {'class': 'input-block-level','placeholder':'votre déscription ici'}}) }}
+                                {{ form_widget(form.texte, {'attr': {'class': 'input-block-level','placeholder':'Votre déscription ici','style':'height: 150px;
+margin-top: 20px;'}}) }}
                             </p>
                             <div class="span6">
                                 <h3 class="push-down-20">Catégries :</h3>
@@ -77,9 +69,9 @@
                                         <tbody>
                                             {% for ser in cat.services %}
                                                 {% if loop.index is not divisible by(2) %}<tr>{% endif %}
-                                                <td><label> <input style="margin-right: 12px;vertical-align: sub;" type="checkbox" name="services[]" value="{{ ser.id }}" {% if ser in annonce.getServices %}checked{% endif %} >{{ ser.libelle }} </label></td>
-                                                {% if loop.index is  divisible by(2) %}</tr>{% endif %}
-                                            {% endfor %}
+                                                    <td><label> <input style="margin-right: 12px;vertical-align: sub;" type="checkbox" name="services[]" value="{{ ser.id }}" {% if ser in annonce.getServices %}checked{% endif %} >{{ ser.libelle }} </label></td>
+                                                    {% if loop.index is  divisible by(2) %}</tr>{% endif %}
+                                                {% endfor %}
                                         </tbody>
                                     </table>
 
@@ -92,48 +84,48 @@
                                     {{ form_widget(form.photo1) }}
                                     {% if annonce.photo1!= null %}
                                         <a href="{{ path('deletephoto1',{'id':annonce.id}) }}" onclick="javascript:return(confirm('Etes-vous certain de vouloir supprimer cette photo ?'))" > <i class="icon-trash "></i></a>
-                                        <div class="span1">
-                                            <div class="picture push-down-20">
-                                                <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo1) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo1) }}" alt="" width="128" height="128" /></a>
-                                            </div>
+                                    <div class="span1">
+                                        <div class="picture push-down-20">
+                                            <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo1) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo1) }}" alt="" width="128" height="128" /></a>
                                         </div>
-                                    {% endif %}
+                                    </div>
+                                {% endif %}
                                 </p>   
                                 <p class="span">
                                     {{ form_errors(form.photo2) }}
                                     {{ form_widget(form.photo2) }}        
                                     {% if annonce.photo2!= null %}
                                         <a href="{{ path('deletephoto2',{'id':annonce.id}) }}" onclick="javascript:return(confirm('Etes-vous certain de vouloir supprimer cette photo ?'))"  > <i class="icon-trash "></i></a>
-                                        <div class="span1">
-                                            <div class="picture push-down-20">
-                                                <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo2) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo2) }}" alt="" width="128" height="128" /></a>
-                                            </div>
+                                    <div class="span1">
+                                        <div class="picture push-down-20">
+                                            <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo2) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo2) }}" alt="" width="128" height="128" /></a>
                                         </div>
-                                    {% endif %}
+                                    </div>
+                                {% endif %}
                                 </p>  
                                 <p class="span">
                                     {{ form_errors(form.photo3) }}
                                     {{ form_widget(form.photo3) }}     
                                     {% if annonce.photo3!= null %}
                                         <a href="{{ path('deletephoto3',{'id':annonce.id}) }}" onclick="javascript:return(confirm('Etes-vous certain de vouloir supprimer cette photo ?'))" > <i class="icon-trash "></i></a>
-                                        <div class="span1">
-                                            <div class="picture push-down-20">
-                                                <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo3) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo3) }}" alt="" width="128" height="128" /></a>
-                                            </div>
+                                    <div class="span1">
+                                        <div class="picture push-down-20">
+                                            <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo3) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo3) }}" alt="" width="128" height="128" /></a>
                                         </div>
-                                    {% endif %} 
+                                    </div>
+                                {% endif %} 
                                 </p> 
                                 <p class="span">
                                     {{ form_errors(form.photo4) }}
                                     {{ form_widget(form.photo4) }}      
                                     {% if annonce.photo4!= null %}
                                         <a href="{{ path('deletephoto4',{'id':annonce.id}) }}" onclick="javascript:return(confirm('Etes-vous certain de vouloir supprimer cette photo ?'))" > <i class="icon-trash "></i></a>
-                                        <div class="span1">
-                                            <div class="picture push-down-20">
-                                                <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo4) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo4) }}" alt="" width="128" height="128" /></a>
-                                            </div>
+                                    <div class="span1">
+                                        <div class="picture push-down-20">
+                                            <a href="{{ asset(annonce.getUploadDir~'/'~annonce.photo4) }}" class="add-prettyphoto"><img style="width: 55px;" class="rounded" src="{{ asset(annonce.getUploadDir~'/'~annonce.photo4) }}" alt="" width="128" height="128" /></a>
                                         </div>
-                                    {% endif %} 
+                                    </div>
+                                {% endif %} 
                                 </p>   
                             </div>
                             <p style="margin-top: 30px" class="span12">
@@ -147,28 +139,28 @@
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script>
-        $(document).ready(function () {
-            $(".Region").change(function () {
-                $(".Ville").empty();
-                $(".Ville").append('<option value="">Loading...</option>');
-                $(".Ville").trigger("liszt:updated");
-                var id = $(this).val();
-                $.ajax({
-                    url: '{{ path("annonce_ville") }}',
-                    type: 'POST',
-                    data: 'id=' + id,
-                    dataType: 'json',
-                    success: function (data) {
-                        $(".Ville").empty();
-                        $.each(data, function (index, value) {
-                            $(".Ville").append('<option value="' + index + '">' + value + '</option>');
-                            $(".Ville").trigger("liszt:updated");
-                        });
-                    }
-                });
+                                            $(document).ready(function () {
+                                                $(".Region").change(function () {
+                                                    $(".Ville").empty();
+                                                    $(".Ville").append('<option value="">Loading...</option>');
+                                                    $(".Ville").trigger("liszt:updated");
+                                                    var id = $(this).val();
+                                                    $.ajax({
+                                                        url: '{{ path("annonce_ville") }}',
+                                                        type: 'POST',
+                                                        data: 'id=' + id,
+                                                        dataType: 'json',
+                                                        success: function (data) {
+                                                            $(".Ville").empty();
+                                                            $.each(data, function (index, value) {
+                                                                $(".Ville").append('<option value="' + index + '">' + value + '</option>');
+                                                                $(".Ville").trigger("liszt:updated");
+                                                            });
+                                                        }
+                                                    });
 
-            })
+                                                })
 
-        })
+                                            })
     </script>                 
 {% endblock %}
