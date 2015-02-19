@@ -36,7 +36,7 @@
                             </div>
                             <div class="span4">
                                 <div class="form-inline sorting-by"> 
-                                    <form method="POST" action="{{ path('Filtre',{'page':page,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}" style="margin: 0px" >
+                                    <form method="POST" action="{{ path('Filtre',{'page':page,'type':type,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}" style="margin: 0px" >
                                         <label for="isotopeSorting" class="black-clr">Sort:</label>
                                         <select onchange="submit();" id="isotopeSorting" name="FiltreOrderBy" class="span3">
                                             <option value='prix-desc'            {% if(orderby=='prix' and desc=='desc') %}selected{% endif %} />Par Prix  &uarr;
@@ -61,6 +61,7 @@
                                         <th></th>
                                         <th class="HideResp">Région</th>
                                         <th>Ville</th>
+                                        <th>Type</th>
                                         <th>Titre</th>
                                         <th>Prix</th>
                                         <th class="HideResp">Date</th>
@@ -77,6 +78,7 @@
                                             <td>{% if annonce.getFirstPhoto!="img/nopic.jpg" %}<li class="icon-camera"></li>{% endif %}</td>
                                             <td class="HideResp">{{ annonce.region }}</td>
                                             <td>{{ annonce.ville }}</td>
+                                            <td>{{ annonce.showType }}</td>
                                             <td><strong>{{ annonce.titre|title|slice(0, 30)   }}</strong></td>
                                             <td>{{ annonce.prix|slice(0, 20)  }}</td>
                                             <td class="HideResp">{{ annonce.dateCreation|date('d/m/Y') }}</td>

@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class AnnonceRepository extends EntityRepository
 {
 
-    public function filtre($page, $region, $ville, $categorie, $service, $search, $orderby, $desc)
+    public function filtre($page,$type, $region, $ville, $categorie, $service, $search, $orderby, $desc)
     {
         $query = $this->createQueryBuilder('a');
         if ($service != 0)
@@ -27,6 +27,8 @@ class AnnonceRepository extends EntityRepository
             $query->where('s.Categorie=:categorie')->setParameter('categorie', $categorie);
         }
         $query->andWhere('a.etat=:abc')->setParameter('abc', 1);
+        if ($type != 0)
+            $query->andWhere('a.type = :type')->setParameter('type', $type);
         if ($region != 0)
             $query->andWhere('a.region = :region')->setParameter('region', $region);
         if ($ville != 0)
@@ -51,7 +53,7 @@ class AnnonceRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
-    public function filtreCount($page, $region, $ville, $categorie, $service, $search, $orderby, $desc)
+    public function filtreCount($page,$type, $region, $ville, $categorie, $service, $search, $orderby, $desc)
     {
         $query = $this->createQueryBuilder('a');
         if ($service != 0)
@@ -67,6 +69,8 @@ class AnnonceRepository extends EntityRepository
         $query->andWhere('a.etat=:etat')->setParameter('etat', 1);
         if ($region != 0)
             $query->andWhere('a.region = :region')->setParameter('region', $region);
+        if ($type != 0)
+            $query->andWhere('a.type = :type')->setParameter('type', $type);
         if ($ville != 0)
             $query->andWhere('a.ville = :ville')->setParameter('ville', $ville);
         if ($search != "_")

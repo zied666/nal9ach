@@ -9,14 +9,26 @@
             </div>
             <div id="filterS" class="accordion-body collapse {% if search!='_' %}in{% endif %} ">
                 <div>
-                    <form class="" action="{{ path('Filtre',{'page':page,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}" method="POST" />
+                    <form class="" action="{{ path('Filtre',{'page':page,'type':type,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}" method="POST" />
                     <input type="text" value="{% if search!='_' %}{{ search }}{% endif %}"  name="FiltreSearch" />
                     <button style="margin-top: -8px;" type="submit"><span class="icon-search"></span></button>
                     </form>
                 </div>
             </div>
         </div> <!-- /categories -->
-        <form style="margin: 0px;" method="post" action="{{ path('Filtre',{'page':page,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}">
+        <form style="margin: 0px;" method="post" action="{{ path('Filtre',{'page':page,'type':type,'ville':ville,'categorie':categorie,'region':region,'service':service,'search':search,'orderby':orderby,'desc':desc}) }}">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" href="#filterReg">Type  <b class="caret"></b></a>
+                </div>
+                <div id="filterReg" class="accordion-body collapse {% if type!=0  %}in{% endif %}">
+                    <div class="accordion-inner">
+                        <label class="LFilte"><input onchange="submit()" type="radio" name="RadioType" value="0" class="LRadio" {% if type==0 %}checked{% endif %} >Offre & demande</label>
+                        <label class="LFilte"><input onchange="submit()" type="radio" name="RadioType" value="1" class="LRadio" {% if type==1 %}checked{% endif %} >Offre</label>
+                        <label class="LFilte"><input onchange="submit()" type="radio" name="RadioType" value="2" class="LRadio" {% if type==2 %}checked{% endif %} >Demande</label>
+                    </div>
+                </div>
+            </div>  
             {% for cat in categories %}
                 <div class="accordion-group">
                     <div class="accordion-heading">

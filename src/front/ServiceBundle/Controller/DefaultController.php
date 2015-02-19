@@ -42,13 +42,13 @@ class DefaultController extends Controller
         return $this->render('frontServiceBundle::show.html.twig', array('form' => $form->createView(), 'annonce' => $annonce));
     }
 
-    public function listeAction($page, $region, $ville,$categorie, $service, $search, $orderby, $desc)
+    public function listeAction($page,$type, $region, $ville,$categorie, $service, $search, $orderby, $desc)
     {
         $em = $this->getDoctrine()->getManager();
         $regions = $em->getRepository("adminLocBundle:Region")->findBy(array(), array('libelle' => 'ASC'));
         $categories=$em->getRepository("adminRefBundle:Categorie")->findAll();
-        $annonces = $em->getRepository("frontAnnonceBundle:Annonce")->filtre($page, $region, $ville,$categorie, $service, $search, $orderby, $desc);
-        $count = $em->getRepository("frontAnnonceBundle:Annonce")->filtreCount($page, $region, $ville,$categorie, $service, $search, $orderby, $desc);
+        $annonces = $em->getRepository("frontAnnonceBundle:Annonce")->filtre($page,$type, $region, $ville,$categorie, $service, $search, $orderby, $desc);
+        $count = $em->getRepository("frontAnnonceBundle:Annonce")->filtreCount($page,$type, $region, $ville,$categorie, $service, $search, $orderby, $desc);
         $nbrpage=  ceil($count/20);
         if($nbrpage==0)
                 $nbrpage=1;
@@ -62,6 +62,7 @@ class DefaultController extends Controller
         return $this->render('frontServiceBundle::liste.html.twig', array(
                     'annonces' => $annonces,
                     'page' => $page,
+                    'type' => $type,
                     'region' => $region,
                     'ville' => $ville,
                     'categorie' => $categorie,
@@ -77,7 +78,7 @@ class DefaultController extends Controller
         );
     }
 
-    public function filtreAction($page, $region, $ville,$categorie, $service, $search, $orderby, $desc)
+    public function filtreAction($page,$type, $region, $ville,$categorie, $service, $search, $orderby, $desc)
     {
         $request = $this->getRequest();
         if ($request->isMethod("POST"))
@@ -102,9 +103,12 @@ class DefaultController extends Controller
                 $service = $request->get('RadioService');
             if ($request->get('RadioRegion') != NULL)
                 $region = $request->get('RadioRegion');
+            if ($request->get('RadioType') != NULL)
+                $type = $request->get('RadioType');
         }
         return $this->redirect($this->generateUrl('liste_annonce', array(
                             'page' => $page,
+                            'type' => $type,
                             'region' => $region,
                             'ville' => $ville,
                             'categorie' => $categorie,

@@ -31,6 +31,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
+                                    <th>Type</th>
                                     <th>Titre</th>
                                     <th>Prix</th>
                                     <th>Region</th>
@@ -44,6 +45,7 @@
                             <tbody>
                                 {% for annonce in annonces %}
                                     <tr>
+                                        <td>{{ annonce.showType }}</td>
                                         <td>{{ annonce.titre }}</td>
                                         <td>{{ annonce.prix }}</td>
                                         <td>{{ annonce.region }}</td>
